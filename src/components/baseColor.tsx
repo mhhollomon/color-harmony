@@ -3,7 +3,7 @@ import { colorAtom } from "~/lib/atoms";
 import { useAtom } from "jotai";
 import { colorFromString } from "~/lib/color";
 import './baseColor.css'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ColorSwatch from "~/components/colorSwatch";
 
 export default function BaseColor() {
@@ -26,6 +26,11 @@ export default function BaseColor() {
             setErrorMsg((err as Error).message);
         }
     }
+
+    useEffect(() => {
+        /* make sure our string matches the current color on mount */
+        setColorString(color.toString());
+    }, [color]);
 
 
     return (

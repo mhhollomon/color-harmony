@@ -15,7 +15,10 @@
     border-width: 1px;
     border-style: solid;
     border-color: var(--color-border);
-    user-select: text;
+
+    p {
+        user-select: all;
+    }
 }
 
 .color-swatch__info:popover-open {

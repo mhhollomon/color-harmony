@@ -8,6 +8,7 @@ import Analogous from '~/components/analogous'
 import Complementary from '~/components/complementary'
 import SplitComplementary from '~/components/splitComplementary'
 import Triad from '~/components/triad'
+import Tetrad from '~/components/tetrad'
 
 import { useEffect } from 'react'
 import { colorAtom } from '~/lib/atoms'
@@ -54,7 +55,12 @@ export default function App() {
             <SplitComplementary />
             <h2>Triadic</h2>
             <Triad />
+            <h2>Tetradic</h2>
+            <Tetrad />
         </main>
+        <footer className="footer">
+            <p>The End</p>
+        </footer>
 
     </>
   )

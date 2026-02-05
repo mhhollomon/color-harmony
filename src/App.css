@@ -12,3 +12,15 @@
     margin-block : 2rem;
     font-size : 1.25em;
 }
+
+.footer {
+    margin-block : 2rem;
+    text-align : center;
+    background-color: var(--color-primary);
+    color: #fff;
+    padding-block : 1rem;
+
+    a {
+        color: #fff;
+    }
+}

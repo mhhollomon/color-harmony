@@ -52,3 +52,9 @@ input, select, button, optgroup, textarea {
 .harmony__description {
     margin-bottom : 1rem;
 }
+
+.harmony__flex {
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+}
