@@ -42,3 +42,13 @@ input, select, button, optgroup, textarea {
     background-color: var(--bg-color);
     color: var(--fg-color);
 }
+
+
+/**** COMPONENTS ****/
+.harmony {
+    padding-inline : 5vw;
+}
+
+.harmony__description {
+    margin-bottom : 1rem;
+}
