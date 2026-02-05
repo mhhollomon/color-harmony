@@ -5,6 +5,9 @@ import logo from "./assets/notes-logo.svg"
 import BaseColor from '~/components/baseColor'
 import Monochrome from '~/components/monochrome'
 import Analogous from '~/components/analogous'
+import Complementary from '~/components/complementary'
+import SplitComplementary from '~/components/splitComplementary'
+import Triad from '~/components/triad'
 
 import { useEffect } from 'react'
 import { colorAtom } from '~/lib/atoms'
@@ -45,15 +48,12 @@ export default function App() {
             <Monochrome />
             <h2>Analogous</h2>
             <Analogous />
-            <section>
-                <h2>Complementary</h2>
-            </section>
-            <section>
-                <h2>Split Complementary</h2>
-            </section>
-            <section>
-                <h2>Triad</h2>
-            </section>
+            <h2>Complementary</h2>
+            <Complementary />
+            <h2>Split Complementary</h2>
+            <SplitComplementary />
+            <h2>Triadic</h2>
+            <Triad />
         </main>
 
     </>

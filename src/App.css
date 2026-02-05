@@ -1,6 +1,6 @@
 .main {
-    margin-left : 5rem;
-    margin-right : 5rem;
+    margin-left : clamp(1rem, 5vw, 5rem);
+    margin-right : clamp(1rem, 5vw, 5rem);
 }
 
 :root {

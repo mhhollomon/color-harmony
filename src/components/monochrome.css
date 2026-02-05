@@ -8,7 +8,7 @@
 
 .monochrome__swatch-grid{
     display : grid;
-    grid-template-columns: repeat(5, var(--swatch-width));
+    grid-template-columns: repeat(auto-fit, var(--swatch-width));
     align-items: center;
 }
 

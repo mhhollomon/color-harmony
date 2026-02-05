@@ -4,13 +4,12 @@ import { useAtom } from "jotai";
 import { colorFromString } from "~/lib/color";
 import './baseColor.css'
 import { useState } from "react";
+import ColorSwatch from "~/components/colorSwatch";
 
 export default function BaseColor() {
     const [color, setColor] = useAtom(colorAtom);
-    const [color_string, setColorString] = useState("");
+    const [color_string, setColorString] = useState<string>(color.toString());
     const [errorMsg, setErrorMsg] = useState("");
-
-    const swatch_color = color.toString();
 
     console.log(`color: ${color}`);
 
@@ -31,19 +30,20 @@ export default function BaseColor() {
 
     return (
         <section className="base-color">
-            <div className="base-color__swatch"
-                style={{ backgroundColor: swatch_color }}>
+            <div className="base-color__description">
+                <p>Enter a color in hex, rgb, or hsl format.</p>
+                <p>For example: <code>#ff0000</code> , <code>rgb(255, 0, 0)</code>, or <code>hsl(0, 100%, 50%)</code>.</p>
+                <p>This color will be used as the base to create the color harmonies.</p>
+                <p>You can click on the color swatch to grab the css values.</p>
             </div>
+            <div className="base-color__grid">
+            <ColorSwatch color={color} className="base-color__swatch" index="base-color"/>
             <div className="base-color__input">
                 <label htmlFor="swatch-color">Color (hex, rgb, or hsl)</label>
                 <input type="text" name="swatch-color" id="swatch-color" value={color_string}
                     onChange={(e) => changeColor(e)} />
                 <div className="base-color__error">{errorMsg}</div>
             </div>
-            <div className="base-color__output">
-                <div><strong>In HSL:</strong> {swatch_color}</div>
-                <div><strong>In RGB:</strong> {color.toRGBString()}</div>
-                <div><strong>In Hex:</strong> {color.toHexString()}</div>
             </div>
         </section>
     );
