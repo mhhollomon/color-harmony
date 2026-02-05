@@ -1,0 +1,31 @@
+.color-swatch {
+    anchor-name: --swatch-anchor;
+    anchor-scope: --swatch-anchor;
+}
+
+
+.color-swatch__info {
+    position-anchor: --swatch-anchor;
+    top: calc(anchor(bottom) - 1em);
+    right: calc(anchor(right) - 3em);
+    padding: 0.25em .5em;
+    background-color: var(--bg-color);
+    color: var(--fg-color);
+    border-radius: var(--border-radius);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--color-border);
+    user-select: text;
+}
+
+.color-swatch__info:popover-open {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: .5em;
+    align-items: center;
+}
+
+.color-swatch__color {
+    text-align: left;
+    align-self: start;
+}

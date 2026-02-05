@@ -1,0 +1,36 @@
+.base-color {
+    display : grid;
+    grid-template-columns: var(--swatch-width) 10em 13em;
+    align-items: center;
+    padding-inline: 5vw;
+    column-gap: 1rem;
+    margin-block-end: 1lh;
+}
+
+.base-color__swatch {
+    width: calc(var(--swatch-width) - 2px);
+    height: calc(var(--swatch-height) - 2px);
+    border-radius: 10%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--color-border);
+}
+
+.base-color__input {
+    display: flex;
+    flex-direction: column;
+
+    input {
+        padding: .5rem;
+    }
+    label {
+        padding-inline-start: 0.25em;
+    }
+}
+
+.base-color__error {
+    color: red;
+    font-size : 0.75em;
+    font-style: italic;
+    height : 2lh;
+}

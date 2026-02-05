@@ -1,0 +1,14 @@
+.main {
+    margin-left : 5rem;
+    margin-right : 5rem;
+}
+
+:root {
+    --swatch-height : 5rem;
+    --swatch-width : 3rem;
+}
+
+.app-description {
+    margin-block : 2rem;
+    font-size : 1.25em;
+}

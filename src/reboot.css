@@ -1,0 +1,60 @@
+@layer reboot {
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+        inset: unset;
+    }
+
+    :root {
+        line-height: 1.5;
+        font-weight: 400;
+        font-size: 120%;
+    }
+
+    html {
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
+        -webkit-font-smoothing: antialiased;
+        block-size: 100%;
+    }
+
+    body {
+        font-family: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;
+        color: #212529;
+        background-color: #fff;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        min-block-size: 100%;
+    }
+
+    input,
+    button,
+    textarea,
+    select {
+        font: inherit;
+    }
+
+
+    button {
+        border-radius: 0;
+        line-height: inherit;
+        border-style: none;
+    }
+
+    :disabled {
+        opacity: 0.8;
+        cursor: not-allowed;
+    }
+
+    :focus-visible {
+        outline-offset: 0.2rem;
+    }
+
+    /* END LAYER reboot */
+}
