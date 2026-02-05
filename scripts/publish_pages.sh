@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # Directory that has the clone sitting on the branch gh-pages
-OUTPUT_REPO_DIR=${HOME}/src/gh-pages/__NEW_REPO_NAME__
+OUTPUT_REPO_DIR=${HOME}/src/gh-pages/color-harmony
 
 if [[ ${OUTPUT_REPO_DIR} == *__NEW_REPO_NAME__ ]]; then
     echo "Need to set OUTPUT_REPO_DIR to the directory that has the clone sitting on the branch gh-pages"
@@ -12,7 +12,7 @@ fi
 BUILD_DIR=build-web-deploy
 
 #
-BASE_HREF='/'
+BASE_HREF='/color-harmony/'
 
 # It is assumed that this is called sitting in the root
 # of the source repo.
