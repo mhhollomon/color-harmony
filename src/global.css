@@ -11,6 +11,8 @@
     /* --clr-cta : hsl(248, 76%, 60%); */
     --clr-cta : hsl(from var(--brand-color) h calc(s - 30) calc(l + 10));
 
+    --clr-shadow : #A5A5A5;
+
     --border-radius : .5rem;
 
 
@@ -22,6 +24,8 @@
     --fg-color : white;
     --bg-color : #2e343a;
     --accent-color : hsl(98, 76%, 60%);
+    --clr-shadow : #5a5a5a;
+
 
     --clr-body : #212529;
 }
@@ -54,7 +58,7 @@ p {
 .harmony {
     border : var(--border-std);
     border-radius: var(--border-radius);
-    box-shadow: 5px -5px 5px 0px #A5A5A5;
+    box-shadow: 5px -5px 5px 0px var(--clr-shadow);
     background-color: var(--bg-color);
 }
 

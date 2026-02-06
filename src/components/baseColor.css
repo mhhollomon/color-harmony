@@ -1,5 +1,5 @@
 .base-color {
-    box-shadow: 5px -5px 5px 0px #A5A5A5;
+    box-shadow: 5px -5px 5px 0px var(--clr-shadow);
     background-color: var(--bg-color);
     border: 3px solid var(--clr-cta);
     border-radius: var(--border-radius);
