@@ -17,6 +17,8 @@ export default function Complementary() {
     const colors = [{color : color, label : "Base"}, {color:complementary_color}];
     return (
         <section className="harmony">
+            <h2 className="harmony__title">Complementary</h2>
+            <div className="harmony__body">
             <div className="harmony__description">
                 <p>This is the color that is opposite of the base color on the color wheel.</p>
                 <p>The slider allows you adjust how far the color is from truly "opposite".</p>
@@ -24,6 +26,7 @@ export default function Complementary() {
             </div>
             <SwatchGroup colors={colors} category="complementary" />
             <AngleSlider onChange={onAngleChange} value={offset+40} display={offset} min={0} max={80} />
+            </div>
 
         </section>
     )

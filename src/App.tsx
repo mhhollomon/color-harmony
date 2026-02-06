@@ -39,24 +39,19 @@ export default function App() {
 
         <Header title={APP_NAME} avatar={logo} />
         <main className="main">
-            <div className="app-description">
+            {/* <div className="app-description">
                 <p>Set the base color to get started. All the color harmonies will update when you change the base color.</p>
                 <p>The current base color is also put in the URL, so you can bookmark your favorites.</p>
-            </div>
-            <h2>Base Color</h2>
+            </div> */}
+            <div className="app__grid">
             <BaseColor />
-            <h2>Monochrome</h2>
             <Monochrome />
-            <h2>Analogous</h2>
             <Analogous />
-            <h2>Complementary</h2>
             <Complementary />
-            <h2>Split Complementary</h2>
             <SplitComplementary />
-            <h2>Triadic</h2>
             <Triad />
-            <h2>Tetradic</h2>
             <Tetrad />
+            </div>
         </main>
         <footer className="footer">
             <p>The End</p>

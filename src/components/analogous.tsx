@@ -23,6 +23,8 @@ export default function Analogous() {
 
     return (
         <section className="harmony">
+            <h2 className="harmony__title">Analogous</h2>
+            <div className="harmony__body">
             <div className="harmony__description">
                 <p>These are colors that are "close" to the base color on the color wheel.</p>
                 <p>The slider allows you adjust how far the colors are from the base color.</p>
@@ -30,6 +32,7 @@ export default function Analogous() {
             </div>
             <SwatchGroup colors={colors} category="analogous" />
             <AngleSlider onChange={onAngleChange} value={angle} min={30} max={90} />
+            </div>
         </section>
     )
 }

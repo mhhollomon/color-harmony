@@ -1,31 +1,34 @@
 :root {
     /* THEME VARS */
     --border-color : black;
-    --color-primary: #2d471e;
+    --clr-primary: #2d471e;
     --fg-color : black;
     --bg-color : white;
+    --clr-body : #eee;
 
     --brand-color :#2d471e;
     --accent-color : var(--brand-color);
+    /* --clr-cta : hsl(248, 76%, 60%); */
+    --clr-cta : hsl(from var(--brand-color) h calc(s - 30) calc(l + 10));
 
     --border-radius : .5rem;
 
-    --font-size-h1 : calc(1.375rem + 1.5vw);
-    --font-size-h2 : calc(1.325rem + .9vw);
-    --font-size-h3 : calc(1.3rem + .6vw);
 
 }
 
 [data-theme="dark"] {
+    --clr-primary: #558639;
     --border-color : #dee2e6;
     --fg-color : white;
-    --bg-color : #212529;
-    --accent-color : #83e64a;
+    --bg-color : #2e343a;
+    --accent-color : hsl(98, 76%, 60%);
+
+    --clr-body : #212529;
 }
 
 
 body {
-    background-color : var(--bg-color);
+    background-color : var(--clr-body);
     color : var(--fg-color);
 
     --border-std : 1px solid var(--border-color);
@@ -43,18 +46,28 @@ input, select, button, optgroup, textarea {
     color: var(--fg-color);
 }
 
+p {
+    text-wrap: pretty;
+}
 
 /**** COMPONENTS ****/
 .harmony {
-    padding-inline : 5vw;
+    border : var(--border-std);
+    border-radius: var(--border-radius);
+    box-shadow: 5px -5px 5px 0px #A5A5A5;
+    background-color: var(--bg-color);
+}
+
+.harmony__title {
+    margin-block-end: 1rem;
+    margin-inline-start : 0.5em;
+}
+
+.harmony__body {
+    margin-block-end: 1rem;
+    padding-inline : 2vw;
 }
 
 .harmony__description {
     margin-bottom : 1rem;
-}
-
-.harmony__flex {
-    display : flex;
-    flex-direction: row;
-    align-items: center;
 }
