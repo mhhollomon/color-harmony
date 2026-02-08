@@ -12,7 +12,7 @@ import Tetrad from '~/components/tetrad'
 
 import { useEffect } from 'react'
 import { colorAtom } from '~/lib/atoms'
-import { colorFromString } from '~/lib/color'
+import { colorFromBase64 } from '~/lib/color'
 import { useAtom } from 'jotai'
 
 const APP_NAME = 'Color Harmony'
@@ -22,11 +22,12 @@ export default function App() {
 
     useEffect(() => {
 
-        const color_string = window.location.hash.substring(1);
+
+        const urlObject = new URL(window.location.href);
+        const color_string = urlObject.searchParams.get("c");
 
         if (color_string) {
-            const hex_string = '#' + color_string;
-            const color = colorFromString(hex_string);
+            const color = colorFromBase64(color_string);
             setColor(color);
         }
     }, []); // Run once on component mount

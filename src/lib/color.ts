@@ -30,6 +30,18 @@ export class Color {
         return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`.toUpperCase();
     }
 
+    toBase64(): string {
+        const h = Math.round(this.h);
+        const s = Math.round(this.s * 100);
+        const l = Math.round(this.l * 100);
+
+        const base64 = btoa(`${h},${s},${l}`)
+            .replace(/\+/g, '-') // Replace '+' with '-'
+            .replace(/\//g, '_') // Replace '/' with '_'
+            .replace(/=+$/, ''); // Remove trailing '=' padding
+        return base64;
+    }
+
     setLightness(lightness: number) : Color {
         return new Color(this.h, this.s, lightness);
 
@@ -66,6 +78,19 @@ export function colorFromString(color_string: string): Color {
 
     throw new ColorException(`Unrecognized color string`);
 
+}
+
+export function colorFromBase64(base64: string): Color {
+
+    base64 = base64.replace(/-/g, '+').replace(/_/g, '/');
+    while (base64.length % 4 !== 0) {
+        base64 += '=';
+    }
+
+    const [h, s, l] = atob(base64)
+        .split(',')
+        .map((s) => parseInt(s, 10));
+    return new Color(h, s / 100, l / 100);
 }
 
 

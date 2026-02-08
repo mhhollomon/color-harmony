@@ -3,6 +3,9 @@
     background-color: var(--bg-color);
     border: 3px solid var(--clr-cta);
     border-radius: var(--border-radius);
+
+    /* to allow positioning of the tools */
+    position:relative;
 }
 
 .base-color__title {
@@ -58,4 +61,70 @@
     font-size : 0.75em;
     font-style: italic;
     height : 2lh;
+}
+
+.base-color__tools {
+    position:absolute;
+    bottom: 5px;
+    right: 5px;
+
+    display:flex;
+    flex-direction: row;
+    column-gap: .75em;
+    background-color: hsl(from var(--clr-cta) h s calc(l + 40));
+    border-radius: 0.3rem;
+    padding: 0 0.5em;
+
+    li {
+        list-style-type: none;
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: inherit;
+            transform: scale(1);
+            padding-top: .2em;
+            &:hover {
+                transform: scale(1.4);
+                animation: transform 0.2s ease-in-out;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+}
+
+.base-color__link {
+    anchor-name: --base-color__anchor;
+    position:relative;
+}
+.base-color__copied {
+    position-anchor: --base-color__anchor;
+    position: absolute;
+    bottom : calc(anchor(top) + 0.5em);
+    left : calc(anchor(right) - 1em);
+
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s;
+    transition-behavior: allow-discrete;
+
+    background-color: var(--bg-color);
+    color: var(--fg-color);
+    border-radius: var(--border-radius);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--color-border);
+    padding: 0.25em .5em;
+    font-size: 0.75em;
+    text-wrap : nowrap;
+    box-shadow: 5px -5px 5px 0px var(--clr-shadow);
+}
+
+.base-color__copied--visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s;
+    transition-behavior: allow-discrete;
+
 }

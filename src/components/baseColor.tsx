@@ -5,11 +5,13 @@ import { colorFromString } from "~/lib/color";
 import './baseColor.css'
 import { useEffect, useState } from "react";
 import ColorSwatch from "~/components/colorSwatch";
+import { download, link45deg } from "~/lib/icons";
 
 export default function BaseColor() {
     const [color, setColor] = useAtom(colorAtom);
     const [color_string, setColorString] = useState<string>(color.toString());
     const [errorMsg, setErrorMsg] = useState("");
+    const [isCopied, setIsCopied] = useState(false);
 
     console.log(`color: ${color}`);
 
@@ -19,18 +21,37 @@ export default function BaseColor() {
             const new_color = colorFromString(e.target.value);
             setColor(new_color);
             setErrorMsg("");
-            const hex = new_color.toHexString();
-            window.location.hash = hex;
         } catch (err) {
             console.log(err);
             setErrorMsg((err as Error).message);
         }
     }
 
+    function handleLinkClick() {
+        const currentUrl = window.location.href;
+        const urlObject = new URL(currentUrl);
+        const color_base64 = color.toBase64();
+        urlObject.search="";
+        urlObject.hash = "";
+        urlObject.searchParams.set("c", color_base64);
+        const newUrl = urlObject.href;
+        navigator.clipboard.writeText(newUrl);
+        setIsCopied(true);
+    }
+
+
     useEffect(() => {
         /* make sure our string matches the current color on mount */
         setColorString(color.toString());
     }, [color]);
+
+    useEffect(() => {
+        if (isCopied) {
+            setTimeout(() => {
+                setIsCopied(false);
+            }, 4000);
+        }
+    }, [isCopied]);
 
 
     return (
@@ -53,6 +74,13 @@ export default function BaseColor() {
                     </div>
                 </div>
             </div>
+            <ul className="base-color__tools">
+                <li><a>{download}</a></li>
+                <li className="base-color__link" >
+                    <a onClick={handleLinkClick}>{link45deg}</a>
+                    </li>
+                    {<div className={"base-color__copied" + (isCopied ? " base-color__copied--visible" : "")}>Copied to clipboard!</div>}
+            </ul>
         </section>
     );
 }
