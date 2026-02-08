@@ -1,24 +1,23 @@
-import { useGlobalStore } from "~/lib/globalStore";
+import { useGlobalStore, ANALOGOUS_SLIDER_INDEX } from "~/lib/globalStore";
 
 import SwatchGroup from "~/components/swatchGroup";
 import AngleSlider from "~/components/angleSlider";
-import { useState } from "react";
 
 
 export default function Analogous() {
-    const {base_color} = useGlobalStore();
-    const [angle, setAngle] = useState(40);
+    const {base_color, getAngle, setAngle} = useGlobalStore();
 
     function onAngleChange(angle: number) {
-        setAngle(angle);
+        setAngle(ANALOGOUS_SLIDER_INDEX,angle);
     }
+
+    const angle = getAngle(ANALOGOUS_SLIDER_INDEX);
 
 
     const lower_color = { color: base_color.updateHue(-angle) };
     const higher_color = { color: base_color.updateHue(angle) };
 
     const colors = [lower_color, { color: base_color, label: "Base" }, higher_color];
-
 
     return (
         <section className="harmony">

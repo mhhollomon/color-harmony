@@ -11,14 +11,13 @@ import Triad from '~/components/triad'
 import Tetrad from '~/components/tetrad'
 
 import { useEffect } from 'react'
-import { colorAtom } from '~/lib/atoms'
 import { colorFromBase64 } from '~/lib/color'
-import { useAtom } from 'jotai'
+import { useGlobalStore } from "~/lib/globalStore"
 
 const APP_NAME = 'Color Harmony'
 
 export default function App() {
-    const [_, setColor] = useAtom(colorAtom);
+    const {setBaseColor} = useGlobalStore();
 
     useEffect(() => {
 
@@ -28,7 +27,7 @@ export default function App() {
 
         if (color_string) {
             const color = colorFromBase64(color_string);
-            setColor(color);
+            setBaseColor(color);
         }
     }, []); // Run once on component mount
 

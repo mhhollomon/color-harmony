@@ -1,20 +1,20 @@
-import { useGlobalStore } from "~/lib/globalStore";
+import { useGlobalStore, TETRAD_SLIDER_INDEX } from "~/lib/globalStore";
 
 import SwatchGroup from "~/components/swatchGroup";
-import { useState } from "react";
 import AngleSlider from "~/components/angleSlider";
 
 export default function Tetrad() {
-    const {base_color} = useGlobalStore();
-    const [offset, setOffset] = useState(90);
+    const {base_color, getAngle, setAngle} = useGlobalStore();
+
+    const angle = getAngle(TETRAD_SLIDER_INDEX);
 
     function onAngleChange(angle: number) {
-        setOffset(angle);
+        setAngle(TETRAD_SLIDER_INDEX,angle);
     }
 
     const base_complement = base_color.updateHue(-180);
-    const other_color = base_color.updateHue(offset);
-    const other_complement = base_color.updateHue(offset - 180);
+    const other_color = base_color.updateHue(angle);
+    const other_complement = base_color.updateHue(angle - 180);
 
     const colors = [
         { color: base_color, label: "Base" }, { color: base_complement },
@@ -30,7 +30,7 @@ export default function Tetrad() {
                     <p>You can click on the color swatch to grab the css values.</p>
                 </div>
                 <SwatchGroup colors={colors} category="tetrad" />
-                <AngleSlider onChange={onAngleChange} value={offset} min={10} max={170} />
+                <AngleSlider onChange={onAngleChange} value={angle} min={10} max={170} />
             </div>
         </section>
     )

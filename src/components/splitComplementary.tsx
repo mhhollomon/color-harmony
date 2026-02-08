@@ -1,15 +1,15 @@
-import { useGlobalStore } from "~/lib/globalStore";
+import { useGlobalStore, SPLIT_COMPLEMENTARY_SLIDER_INDEX } from "~/lib/globalStore";
 import SwatchGroup from "~/components/swatchGroup";
 import AngleSlider from "~/components/angleSlider";
-import { useState } from "react";
 
 
 export default function SplitComplementary() {
-    const {base_color} = useGlobalStore();
-    const [offset, setOffset] = useState(30);
+    const {base_color, getAngle, setAngle} = useGlobalStore();
+
+    const offset = getAngle(SPLIT_COMPLEMENTARY_SLIDER_INDEX);
 
     function onAngleChange(angle: number) {
-        setOffset(angle);
+        setAngle(SPLIT_COMPLEMENTARY_SLIDER_INDEX,angle);
     }
 
 

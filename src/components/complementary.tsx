@@ -1,15 +1,16 @@
-import { useGlobalStore } from "~/lib/globalStore";
+import { useGlobalStore, COMPLEMENTARY_SLIDER_INDEX } from "~/lib/globalStore";
 import SwatchGroup from "~/components/swatchGroup";
-import { useState } from "react";
 import AngleSlider from "~/components/angleSlider";
 
 export default function Complementary() {
-    const {base_color} = useGlobalStore();
-    const [offset, setOffset] = useState(0);
+    const {base_color, getAngle, setAngle} = useGlobalStore();
 
     function onAngleChange(angle: number) {
-        setOffset(angle - 40);
+        setAngle(COMPLEMENTARY_SLIDER_INDEX,angle - 40);
     }
+
+    const offset = getAngle(COMPLEMENTARY_SLIDER_INDEX);
+
 
     const complementary_color = base_color.updateHue(-180 + offset);
 
