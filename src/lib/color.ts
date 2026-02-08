@@ -43,8 +43,20 @@ export class Color {
     }
 
     setLightness(lightness: number) : Color {
+
+        if (lightness < 0) {
+            lightness = 0;
+        }
+        if (lightness > 1) {
+            lightness = 1;
+        }
         return new Color(this.h, this.s, lightness);
 
+    }
+
+
+    updateLightness(delta: number) : Color {
+        return this.setLightness(this.l + delta);
     }
 
     setHue(hue: number) : Color {
@@ -55,6 +67,24 @@ export class Color {
             hue -= 360;
         }
         return new Color(hue, this.s, this.l);
+    }
+
+    updateHue(delta: number) : Color {
+        return this.setHue(this.h + delta);
+    }
+
+    setSaturation(saturation: number) : Color {
+        if (saturation < 0) {
+            saturation = 0;
+        }
+        if (saturation > 1) {
+            saturation = 1;
+        }
+        return new Color(this.h, saturation, this.l);
+    }
+
+    updateSaturation(delta: number) : Color {
+        return this.setSaturation(this.s + delta);
     }
 
 }

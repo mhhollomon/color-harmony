@@ -1,20 +1,19 @@
-import { useAtomValue } from "jotai";
-import { colorAtom } from "~/lib/atoms";
+import { useGlobalStore } from "~/lib/globalStore";
 import SwatchGroup from "~/components/swatchGroup";
 import { useState } from "react";
 import AngleSlider from "~/components/angleSlider";
 
 export default function Complementary() {
-    const color = useAtomValue(colorAtom);
+    const {base_color} = useGlobalStore();
     const [offset, setOffset] = useState(0);
 
     function onAngleChange(angle: number) {
         setOffset(angle - 40);
     }
 
-    const complementary_color = color.setHue(color.h - 180 + offset);
+    const complementary_color = base_color.updateHue(-180 + offset);
 
-    const colors = [{color : color, label : "Base"}, {color:complementary_color}];
+    const colors = [{color : base_color, label : "Base"}, {color:complementary_color}];
     return (
         <section className="harmony">
             <h2 className="harmony__title">Complementary</h2>

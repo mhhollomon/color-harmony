@@ -1,25 +1,25 @@
 
-import { colorAtom } from "~/lib/atoms";
-import { useAtom } from "jotai";
 import { colorFromString } from "~/lib/color";
 import './baseColor.css'
 import { useEffect, useState } from "react";
 import ColorSwatch from "~/components/colorSwatch";
 import { download, link45deg } from "~/lib/icons";
+import { useGlobalStore } from "~/lib/globalStore";
 
 export default function BaseColor() {
-    const [color, setColor] = useAtom(colorAtom);
-    const [color_string, setColorString] = useState<string>(color.toString());
+    const { base_color, setBaseColor } = useGlobalStore();
+    const [color_string, setColorString] = useState<string>(base_color.toString());
     const [errorMsg, setErrorMsg] = useState("");
     const [isCopied, setIsCopied] = useState(false);
 
-    console.log(`color: ${color}`);
+
+    console.log(`color: ${base_color.toString()}`);
 
     function changeColor(e: React.ChangeEvent<HTMLInputElement>) {
         setColorString(e.target.value);
         try {
             const new_color = colorFromString(e.target.value);
-            setColor(new_color);
+            setBaseColor(new_color);
             setErrorMsg("");
         } catch (err) {
             console.log(err);
@@ -30,7 +30,7 @@ export default function BaseColor() {
     function handleLinkClick() {
         const currentUrl = window.location.href;
         const urlObject = new URL(currentUrl);
-        const color_base64 = color.toBase64();
+        const color_base64 = base_color.toBase64();
         urlObject.search="";
         urlObject.hash = "";
         urlObject.searchParams.set("c", color_base64);
@@ -42,14 +42,14 @@ export default function BaseColor() {
 
     useEffect(() => {
         /* make sure our string matches the current color on mount */
-        setColorString(color.toString());
-    }, [color]);
+        setColorString(base_color.toString());
+    }, [base_color]);
 
     useEffect(() => {
         if (isCopied) {
             setTimeout(() => {
                 setIsCopied(false);
-            }, 4000);
+            }, 3000);
         }
     }, [isCopied]);
 
@@ -65,7 +65,7 @@ export default function BaseColor() {
                     <p>You can click on the color swatch to grab the css values.</p>
                 </div>
                 <div className="base-color__grid">
-                    <ColorSwatch color={color} className="base-color__swatch" index="base-color" />
+                    <ColorSwatch color={base_color} className="base-color__swatch" index="base-color" />
                     <div className="base-color__input">
                         <label htmlFor="swatch-color">Color (hex, rgb, or hsl)</label>
                         <input type="text" name="swatch-color" id="swatch-color" value={color_string}
@@ -79,7 +79,7 @@ export default function BaseColor() {
                 <li className="base-color__link" >
                     <a onClick={handleLinkClick}>{link45deg}</a>
                     </li>
-                    {<div className={"base-color__copied" + (isCopied ? " base-color__copied--visible" : "")}>Copied to clipboard!</div>}
+                    <div className={"base-color__copied" + (isCopied ? " base-color__copied--visible" : "")}>Link copied to clipboard!</div>
             </ul>
         </section>
     );

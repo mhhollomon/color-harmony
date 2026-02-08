@@ -1,5 +1,4 @@
-import { useAtomValue } from "jotai";
-import { colorAtom } from "~/lib/atoms";
+import { useGlobalStore } from "~/lib/globalStore";
 
 import SwatchGroup from "~/components/swatchGroup";
 import AngleSlider from "~/components/angleSlider";
@@ -7,7 +6,7 @@ import { useState } from "react";
 
 
 export default function Analogous() {
-    const color = useAtomValue(colorAtom);
+    const {base_color} = useGlobalStore();
     const [angle, setAngle] = useState(40);
 
     function onAngleChange(angle: number) {
@@ -15,10 +14,10 @@ export default function Analogous() {
     }
 
 
-    const lower_color = { color: color.setHue(color.h - angle) };
-    const higher_color = { color: color.setHue(color.h + angle) };
+    const lower_color = { color: base_color.updateHue(-angle) };
+    const higher_color = { color: base_color.updateHue(angle) };
 
-    const colors = [lower_color, { color: color, label: "Base" }, higher_color];
+    const colors = [lower_color, { color: base_color, label: "Base" }, higher_color];
 
 
     return (

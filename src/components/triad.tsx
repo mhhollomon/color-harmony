@@ -1,16 +1,15 @@
-import { useAtomValue } from "jotai";
-import { colorAtom } from "~/lib/atoms";
+import { useGlobalStore } from "~/lib/globalStore";
 
 import SwatchGroup from "~/components/swatchGroup";
 
 export default function Triad() {
-    const color = useAtomValue(colorAtom);
+    const {base_color} = useGlobalStore();
     const offset = 120;
 
-    const lower_color = color.setHue(color.h - offset);
-    const higher_color = color.setHue(color.h + offset);
+    const lower_color = base_color.updateHue(- offset);
+    const higher_color = base_color.setHue(offset);
 
-    const colors = [{color : lower_color}, {color : color, label : "Base"}, {color : higher_color}];
+    const colors = [{color : lower_color}, {color : base_color, label : "Base"}, {color : higher_color}];
     return (
         <section className="harmony">
             <h2 className="harmony__title">Triadic</h2>

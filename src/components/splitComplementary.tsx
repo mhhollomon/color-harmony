@@ -1,12 +1,11 @@
-import { useAtomValue } from "jotai";
-import { colorAtom } from "~/lib/atoms";
+import { useGlobalStore } from "~/lib/globalStore";
 import SwatchGroup from "~/components/swatchGroup";
 import AngleSlider from "~/components/angleSlider";
 import { useState } from "react";
 
 
 export default function SplitComplementary() {
-    const color = useAtomValue(colorAtom);
+    const {base_color} = useGlobalStore();
     const [offset, setOffset] = useState(30);
 
     function onAngleChange(angle: number) {
@@ -14,10 +13,10 @@ export default function SplitComplementary() {
     }
 
 
-    const lower_color = color.setHue(color.h + 180 - offset);
-    const higher_color = color.setHue(color.h + 180 + offset);
+    const lower_color = base_color.updateHue(180 - offset);
+    const higher_color = base_color.updateHue(180 + offset);
 
-    const colors = [{ color: lower_color }, { color: color, label: "Base" }, { color: higher_color }];
+    const colors = [{ color: lower_color }, { color: base_color, label: "Base" }, { color: higher_color }];
     return (
         <section className="harmony">
             <h2 className="harmony__title">Split Complementary</h2>

@@ -101,7 +101,7 @@
     position-anchor: --base-color__anchor;
     position: absolute;
     bottom : calc(anchor(top) + 0.5em);
-    left : calc(anchor(right) - 1em);
+    right : calc(anchor(right) - 1em);
 
     display: block;
     visibility: hidden;

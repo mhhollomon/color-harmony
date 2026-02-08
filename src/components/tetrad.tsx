@@ -1,24 +1,23 @@
-import { useAtomValue } from "jotai";
-import { colorAtom } from "~/lib/atoms";
+import { useGlobalStore } from "~/lib/globalStore";
 
 import SwatchGroup from "~/components/swatchGroup";
 import { useState } from "react";
 import AngleSlider from "~/components/angleSlider";
 
 export default function Tetrad() {
-    const color = useAtomValue(colorAtom);
+    const {base_color} = useGlobalStore();
     const [offset, setOffset] = useState(90);
 
     function onAngleChange(angle: number) {
         setOffset(angle);
     }
 
-    const base_complement = color.setHue(color.h - 180);
-    const other_color = color.setHue(color.h + offset);
-    const other_complement = color.setHue(color.h + offset - 180);
+    const base_complement = base_color.updateHue(-180);
+    const other_color = base_color.updateHue(offset);
+    const other_complement = base_color.updateHue(offset - 180);
 
     const colors = [
-        { color: color, label: "Base" }, { color: base_complement },
+        { color: base_color, label: "Base" }, { color: base_complement },
         { color: other_color, label: "Second" }, { color: other_complement }];
 
     return (
