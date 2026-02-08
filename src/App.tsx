@@ -11,23 +11,19 @@ import Triad from '~/components/triad'
 import Tetrad from '~/components/tetrad'
 
 import { useEffect } from 'react'
-import { colorFromBase64 } from '~/lib/color'
 import { useGlobalStore } from "~/lib/globalStore"
 
 const APP_NAME = 'Color Harmony'
 
 export default function App() {
-    const {setBaseColor} = useGlobalStore();
+    const {fromSearchParm} = useGlobalStore();
 
     useEffect(() => {
-
-
         const urlObject = new URL(window.location.href);
-        const color_string = urlObject.searchParams.get("c");
+        const state_string = urlObject.searchParams.get("s");
 
-        if (color_string) {
-            const color = colorFromBase64(color_string);
-            setBaseColor(color);
+        if (state_string) {
+            fromSearchParm(state_string);
         }
     }, []); // Run once on component mount
 

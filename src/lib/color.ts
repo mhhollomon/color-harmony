@@ -31,15 +31,20 @@ export class Color {
     }
 
     toBase64(): string {
-        const h = Math.round(this.h);
-        const s = Math.round(this.s * 100);
-        const l = Math.round(this.l * 100);
+        const compact = this.toCompactString();
 
-        const base64 = btoa(`${h},${s},${l}`)
+        const base64 = btoa(compact)
             .replace(/\+/g, '-') // Replace '+' with '-'
             .replace(/\//g, '_') // Replace '/' with '_'
             .replace(/=+$/, ''); // Remove trailing '=' padding
         return base64;
+    }
+
+    toCompactString(): string {
+        const h = Math.round(this.h);
+        const s = Math.round(this.s * 100);
+        const l = Math.round(this.l * 100);
+        return `${h},${s},${l}`;
     }
 
     setLightness(lightness: number) : Color {
@@ -120,6 +125,12 @@ export function colorFromBase64(base64: string): Color {
     const [h, s, l] = atob(base64)
         .split(',')
         .map((s) => parseInt(s, 10));
+    return new Color(h, s / 100, l / 100);
+}
+
+export function colorFromCompactString(compact_string: string): Color {
+
+    const [h, s, l] = compact_string.split(',').map((s) => parseInt(s, 10));
     return new Color(h, s / 100, l / 100);
 }
 

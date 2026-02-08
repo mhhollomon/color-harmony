@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Color } from "~/lib/color"
+import { Color, colorFromCompactString } from "~/lib/color"
 
 export interface GlobalStoreType {
     base_color : Color
@@ -8,6 +8,9 @@ export interface GlobalStoreType {
     angles : number[]
     getAngle : (index: number) => number
     setAngle : (index: number, angle : number) => void
+
+    toSearchParm : () => string
+    fromSearchParm : (search : string) => void
 }
 
 export const ANALOGOUS_SLIDER_INDEX = 0;
@@ -35,6 +38,30 @@ export const useGlobalStore = create<GlobalStoreType>((set, get) => ({
     setBaseColor : (color : Color) => set({ base_color: color }),
 
     getAngle : (index: number) => get().angles[index],
-    setAngle : (index: number, angle : number) => set(state => ({ angles: state.angles.map((a, i) => i === index ? angle : a) }))
+    setAngle : (index: number, angle : number) => set(state => ({ angles: state.angles.map((a, i) => i === index ? angle : a) })),
 
+    toSearchParm : () => {
+        const color = get().base_color.toCompactString();
+        const angles = get().angles;
+
+        let retval = `${color}:${angles[0]}:${angles[1]}:${angles[2]}:${angles[3]}`;
+
+        retval = btoa(retval)
+            .replace(/\+/g, '-') // Replace '+' with '-'
+            .replace(/\//g, '_') // Replace '/' with '_'
+            .replace(/=+$/, ''); // Remove trailing '=' padding
+        return retval;
+    },
+
+    fromSearchParm : (param : string) => {
+        param = param.replace(/-/g, '+').replace(/_/g, '/');
+        while (param.length % 4 !== 0) {
+            param += '=';
+        }
+
+        const [color, a0, a1, a2, a3] = atob(param)
+            .split(':');
+        const angles = [parseInt(a0, 10), parseInt(a1, 10), parseInt(a2, 10), parseInt(a3, 10)];
+        set({ base_color: colorFromCompactString(color), angles : angles });
+    }
 }));

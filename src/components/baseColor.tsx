@@ -7,7 +7,7 @@ import { download, link45deg } from "~/lib/icons";
 import { useGlobalStore } from "~/lib/globalStore";
 
 export default function BaseColor() {
-    const { base_color, setBaseColor } = useGlobalStore();
+    const { base_color, setBaseColor, toSearchParm } = useGlobalStore();
     const [color_string, setColorString] = useState<string>(base_color.toString());
     const [errorMsg, setErrorMsg] = useState("");
     const [isCopied, setIsCopied] = useState(false);
@@ -30,15 +30,14 @@ export default function BaseColor() {
     function handleLinkClick() {
         const currentUrl = window.location.href;
         const urlObject = new URL(currentUrl);
-        const color_base64 = base_color.toBase64();
+        const searchString = toSearchParm();
         urlObject.search="";
         urlObject.hash = "";
-        urlObject.searchParams.set("c", color_base64);
+        urlObject.searchParams.set("s", searchString);
         const newUrl = urlObject.href;
         navigator.clipboard.writeText(newUrl);
         setIsCopied(true);
     }
-
 
     useEffect(() => {
         /* make sure our string matches the current color on mount */
@@ -78,8 +77,10 @@ export default function BaseColor() {
                 <li><a>{download}</a></li>
                 <li className="base-color__link" >
                     <a onClick={handleLinkClick}>{link45deg}</a>
-                    </li>
-                    <div className={"base-color__copied" + (isCopied ? " base-color__copied--visible" : "")}>Link copied to clipboard!</div>
+                </li>
+                <div className={"base-color__copied" + (isCopied ? " base-color__copied--visible" : "")}>
+                    Link copied to clipboard!
+                </div>
             </ul>
         </section>
     );
