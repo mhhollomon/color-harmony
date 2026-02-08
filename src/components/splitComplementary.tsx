@@ -1,6 +1,7 @@
 import { useGlobalStore, SPLIT_COMPLEMENTARY_SLIDER_INDEX } from "~/lib/globalStore";
 import SwatchGroup from "~/components/swatchGroup";
 import AngleSlider from "~/components/angleSlider";
+import { splitComplementaryColors } from "~/lib/algorithms";
 
 
 export default function SplitComplementary() {
@@ -12,11 +13,8 @@ export default function SplitComplementary() {
         setAngle(SPLIT_COMPLEMENTARY_SLIDER_INDEX,angle);
     }
 
+    const colors = splitComplementaryColors(base_color, offset);
 
-    const lower_color = base_color.updateHue(180 - offset);
-    const higher_color = base_color.updateHue(180 + offset);
-
-    const colors = [{ color: lower_color }, { color: base_color, label: "Base" }, { color: higher_color }];
     return (
         <section className="harmony">
             <h2 className="harmony__title">Split Complementary</h2>

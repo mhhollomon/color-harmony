@@ -2,6 +2,7 @@ import { useGlobalStore, ANALOGOUS_SLIDER_INDEX } from "~/lib/globalStore";
 
 import SwatchGroup from "~/components/swatchGroup";
 import AngleSlider from "~/components/angleSlider";
+import { analogousColors } from "~/lib/algorithms";
 
 
 export default function Analogous() {
@@ -13,11 +14,7 @@ export default function Analogous() {
 
     const angle = getAngle(ANALOGOUS_SLIDER_INDEX);
 
-
-    const lower_color = { color: base_color.updateHue(-angle) };
-    const higher_color = { color: base_color.updateHue(angle) };
-
-    const colors = [lower_color, { color: base_color, label: "Base" }, higher_color];
+    const colors = analogousColors(base_color, angle);
 
     return (
         <section className="harmony">

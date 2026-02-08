@@ -30,7 +30,7 @@ export default function AngleSlider({min, max, value, display, step, onChange} :
         <Slider.Root
         className="SliderRoot"
         onValueChange={onSliderChange}
-        min={min} max={max} step={step} defaultValue={[40]}>
+        min={min} max={max} step={step} value={[value]}>
             <Slider.Track className="SliderTrack">
                 <Slider.Range className="SliderRange" />
             </Slider.Track>

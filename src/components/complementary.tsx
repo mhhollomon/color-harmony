@@ -1,6 +1,7 @@
 import { useGlobalStore, COMPLEMENTARY_SLIDER_INDEX } from "~/lib/globalStore";
 import SwatchGroup from "~/components/swatchGroup";
 import AngleSlider from "~/components/angleSlider";
+import { complementaryColors } from "~/lib/algorithms";
 
 export default function Complementary() {
     const {base_color, getAngle, setAngle} = useGlobalStore();
@@ -10,11 +11,8 @@ export default function Complementary() {
     }
 
     const offset = getAngle(COMPLEMENTARY_SLIDER_INDEX);
+    const colors = complementaryColors(base_color, offset);
 
-
-    const complementary_color = base_color.updateHue(-180 + offset);
-
-    const colors = [{color : base_color, label : "Base"}, {color:complementary_color}];
     return (
         <section className="harmony">
             <h2 className="harmony__title">Complementary</h2>

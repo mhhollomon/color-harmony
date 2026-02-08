@@ -1,12 +1,9 @@
 import ColorSwatch from "~/components/colorSwatch"
-import type { Color } from "~/lib/color"
+
 import { range } from "~/lib/range"
 import './swatchGroup.css'
+import type { SwatchDatum } from "~/lib/types/swatchDatum"
 
-export interface SwatchDatum {
-    color: Color
-    label?: string
-}
 
 export type SwatchGroupProps = {
     colors: SwatchDatum[],

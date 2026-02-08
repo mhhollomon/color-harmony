@@ -1,15 +1,13 @@
 import { useGlobalStore } from "~/lib/globalStore";
 
 import SwatchGroup from "~/components/swatchGroup";
+import { triadColors } from "~/lib/algorithms";
 
 export default function Triad() {
     const {base_color} = useGlobalStore();
     const offset = 120;
+    const colors = triadColors(base_color, offset);
 
-    const lower_color = base_color.updateHue(- offset);
-    const higher_color = base_color.setHue(offset);
-
-    const colors = [{color : lower_color}, {color : base_color, label : "Base"}, {color : higher_color}];
     return (
         <section className="harmony">
             <h2 className="harmony__title">Triadic</h2>

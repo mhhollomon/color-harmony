@@ -2,6 +2,7 @@ import { useGlobalStore, TETRAD_SLIDER_INDEX } from "~/lib/globalStore";
 
 import SwatchGroup from "~/components/swatchGroup";
 import AngleSlider from "~/components/angleSlider";
+import { tetradColors } from "~/lib/algorithms";
 
 export default function Tetrad() {
     const {base_color, getAngle, setAngle} = useGlobalStore();
@@ -12,13 +13,7 @@ export default function Tetrad() {
         setAngle(TETRAD_SLIDER_INDEX,angle);
     }
 
-    const base_complement = base_color.updateHue(-180);
-    const other_color = base_color.updateHue(angle);
-    const other_complement = base_color.updateHue(angle - 180);
-
-    const colors = [
-        { color: base_color, label: "Base" }, { color: base_complement },
-        { color: other_color, label: "Second" }, { color: other_complement }];
+    const colors = tetradColors(base_color, angle);
 
     return (
         <section className="harmony">
