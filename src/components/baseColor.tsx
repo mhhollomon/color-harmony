@@ -3,6 +3,7 @@ import { colorFromString } from "~/lib/color";
 import './baseColor.css'
 import { useEffect, useState } from "react";
 import ColorSwatch from "~/components/colorSwatch";
+import ExportDialog from "~/components/exportDialog";
 import { download, link45deg } from "~/lib/icons";
 import { useGlobalStore } from "~/lib/globalStore";
 
@@ -11,6 +12,7 @@ export default function BaseColor() {
     const [color_string, setColorString] = useState<string>(base_color.toString());
     const [errorMsg, setErrorMsg] = useState("");
     const [isCopied, setIsCopied] = useState(false);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
 
 
     console.log(`color: ${base_color.toString()}`);
@@ -37,6 +39,10 @@ export default function BaseColor() {
         const newUrl = urlObject.href;
         navigator.clipboard.writeText(newUrl);
         setIsCopied(true);
+    }
+
+    function handleExportClick() {
+        setIsDialogOpen(true);
     }
 
     useEffect(() => {
@@ -74,13 +80,14 @@ export default function BaseColor() {
                 </div>
             </div>
             <ul className="base-color__tools">
-                <li><a>{download}</a></li>
+                <li><a onClick={handleExportClick}>{download}</a></li>
                 <li className="base-color__link" >
                     <a onClick={handleLinkClick}>{link45deg}</a>
                 </li>
                 <div className={"base-color__copied" + (isCopied ? " base-color__copied--visible" : "")}>
                     Link copied to clipboard!
                 </div>
+                <ExportDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} />
             </ul>
         </section>
     );

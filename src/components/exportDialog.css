@@ -1,0 +1,13 @@
+.export-dialog {
+    border: none;
+    position: fixed;
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &::backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
