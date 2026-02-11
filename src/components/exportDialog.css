@@ -2,12 +2,38 @@
     border: none;
     position: fixed;
     border-radius: var(--border-radius);
-    background-color: var(--bg-color);
+    background-color: var(--clr-body);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+
+    margin: .5em;
+    padding: .5em;
 
     &::backdrop {
         background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(6px);
     }
+}
+.export-dialog__content {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    width: 100%;
+    height: 100%;
+
+
+    textarea {
+        resize: none;
+        height: 95%;
+        padding-inline: 0.5em;
+    }
+
+}
+
+.export-dialog__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
