@@ -17,6 +17,10 @@
 
     --clr-border : hsl(from var(--clr-bg-base) h s calc(l - 45));
 
+    --clr-error: hsl(from var(--clr-brand-light) 0 calc(s + 40) l);
+    --clr-warning: hsl(from var(--clr-brand-light) 30 calc(s + 40) l);
+    --clr-success: hsl(from var(--clr-brand-light) h calc(s + 50) l);
+
 
 
 

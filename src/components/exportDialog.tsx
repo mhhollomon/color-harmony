@@ -3,22 +3,29 @@ import './exportDialog.css'
 import { useGlobalStore, COMPLEMENTARY_SLIDER_INDEX, ANALOGOUS_SLIDER_INDEX, SPLIT_COMPLEMENTARY_SLIDER_INDEX } from '~/lib/globalStore';
 import { analogousColors, complementaryColors } from '~/lib/algorithms';
 
+import { copy as copy_icon, x_large } from '~/lib/icons';
+
 export interface ExportDialogProps {
-    isOpen : boolean,
-    setIsOpen : (isOpen : boolean) => void
+    isOpen: boolean,
+    setIsOpen: (isOpen: boolean) => void
 }
 
-export default function ExportDialog({isOpen, setIsOpen} : ExportDialogProps) {
+export default function ExportDialog({ isOpen, setIsOpen }: ExportDialogProps) {
     const dialogRef = useRef<HTMLDialogElement>(null);
-    const {base_color, angles} = useGlobalStore();
+    const { base_color, angles } = useGlobalStore();
     const [format, setFormat] = useState('hsl');
 
-    function setFormatState(format : string) {
-        setFormat(format);
+    function setFormatState(new_format: string) {
+        document.getElementById(format)?.classList.remove('export-dialog__tool-button--active');
+        setFormat(new_format);
     }
 
-    function generateData() : string {
-        const color_vars : string[] = [];
+    useEffect(() => {
+        document.getElementById(format)?.classList.add('export-dialog__tool-button--active');
+    }, [format]);
+
+    function generateData(): string {
+        const color_vars: string[] = [];
         color_vars.push(`  --base: ${base_color.toFormatString(format)}`);
 
         const complementary = complementaryColors(base_color, angles[COMPLEMENTARY_SLIDER_INDEX]);
@@ -50,21 +57,20 @@ export default function ExportDialog({isOpen, setIsOpen} : ExportDialogProps) {
     return (
         <dialog className="export-dialog" ref={dialogRef}>
             <div className="export-dialog__content">
-            <header className='export-dialog__header'>Export
-                <button onClick={() => setIsOpen(false)}>Close</button>
-            </header>
-            <main>
+                <header className='export-dialog__header'>Export
+                    <button onClick={() => setIsOpen(false)}>{x_large}</button>
+                </header>
                 <div className="export-dialog__format">
-                    <button onClick={() => setFormatState("hsl")}>hsl</button>
-                    <button onClick={() => setFormatState("rgb")}>rgb</button>
-                    <button onClick={() => setFormatState("hex")}>hex</button>
+                    <button id="hsl" className="export-dialog__tool-button" onClick={() => setFormatState("hsl")}>hsl</button>
+                    <button id="rgb" className="export-dialog__tool-button" onClick={() => setFormatState("rgb")}>rgb</button>
+                    <button id="hex" className="export-dialog__tool-button" onClick={() => setFormatState("hex")}>hex</button>
+                    <button className="export-dialog__tool-button export_dialog__copy">{copy_icon}</button>
                 </div>
                 <textarea name="export" id="export" rows={10} cols={50} readOnly={true}
                     value={generateData()}
                 >
                 </textarea>
-            </main>
-            <footer></footer>
+                <footer></footer>
             </div>
         </dialog>
     )

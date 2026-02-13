@@ -57,7 +57,7 @@
 }
 
 .base-color__error {
-    color: red;
+    color: var(--clr-error);
     font-size : 0.75em;
     font-style: italic;
     height : 2lh;
@@ -109,7 +109,9 @@
     transition: opacity 0.5s ease-in-out, visibility 0.5s;
     transition-behavior: allow-discrete;
 
-    background-color: var(--clr-bg-near);
+    /* background-color: var(--clr-bg-near); */
+    background-color: var(--clr-success);
+
     color: var(--clr-text);
     border-radius: var(--border-radius);
     border-width: 1px;
