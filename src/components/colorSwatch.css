@@ -1,6 +1,7 @@
 .color-swatch {
     anchor-name: --swatch-anchor;
     anchor-scope: --swatch-anchor;
+    border : 1px solid var(--clr-border);
 }
 
 
@@ -9,12 +10,12 @@
     top: calc(anchor(bottom) - 1em);
     right: calc(anchor(right) - 3em);
     padding: 0.25em .5em;
-    background-color: var(--bg-color);
-    color: var(--clr-fg);
+    background-color: var(--clr-bg-near);
+    color: var(--clr-text);
     border-radius: var(--border-radius);
     border-width: 1px;
     border-style: solid;
-    border-color: var(--color-border);
+    border-color: var(--clr-border);
 
     p {
         user-select: all;

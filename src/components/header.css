@@ -45,7 +45,7 @@ d-none {
     padding: 0 .5rem;
     height: 2rem;
     background-color: var(--clr-bg-mid);
-    color: var(--clr-fg);
+    color: var(--clr-text);
     border-color: var(--clr-border);
     border-width: 1px;
     border-style: solid;
@@ -73,11 +73,11 @@ d-none {
     right: anchor(right);
     padding: 0;
     background-color: var(--clr-bg-mid);
-    color: var(--clr-fg);
+    color: var(--clr-text);
     border-radius: var(--border-radius);
     border-width: 1px;
     border-style: solid;
-    border-color: var(--color-border);
+    border-color: var(--clr-border);
 
     li {
         margin: 0;
@@ -104,6 +104,6 @@ d-none {
 
 .theme-switcher__icon {
     vertical-align: middle;
-    color: var(--clr-fg);
+    color: var(--clr-text);
     margin-inline-end: .25rem;
 }

@@ -1,7 +1,7 @@
 .base-color {
     box-shadow: 5px -5px 5px 0px var(--clr-box-shadow);
     background-color: var(--clr-bg-near);
-    border: 3px solid var(--clr-cta);
+    border: 3px solid var(--clr-border);
     border-radius: var(--border-radius);
 
     /* to allow positioning of the tools */
@@ -40,7 +40,7 @@
     border-radius: 10%;
     border-width: 2px;
     border-style: solid;
-    border-color: var(--color-border);
+    border-color: var(--clr-border);
 }
 
 .base-color__input {
@@ -49,7 +49,7 @@
 
     input {
         padding: .5rem;
-        border: 3px solid var(--clr-cta);
+        border: 3px solid var(--clr-border);
     }
     label {
         padding-inline-start: 0.25em;
@@ -71,7 +71,6 @@
     display:flex;
     flex-direction: row;
     column-gap: .75em;
-    /* background-color: hsl(from var(--clr-cta) h s calc(l + 40)); */
     background-color: var(--clr-brand-light);
     border-radius: 0.3rem;
     padding: 0 0.5em;
@@ -111,11 +110,11 @@
     transition-behavior: allow-discrete;
 
     background-color: var(--clr-bg-near);
-    color: var(--clr-fg);
+    color: var(--clr-text);
     border-radius: var(--border-radius);
     border-width: 1px;
     border-style: solid;
-    border-color: var(--color-border);
+    border-color: var(--clr-border);
     padding: 0.25em .5em;
     font-size: 0.75em;
     text-wrap : nowrap;

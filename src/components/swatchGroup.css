@@ -7,10 +7,14 @@
 .swatch-group__swatch {
     width: var(--swatch-width);
     height: calc(var(--swatch-height) - 2px);
-    border-radius: 10%;
-    border-width: 2px;
-    border-style: solid;
-    border-color: var(--color-border);
+}
+
+/* try to not double up the border
+ * The problem is, with the border radius, you can see a gap at the top left.
+*/
+/* maybe move to table ?? */
+div.swatch-group__output:nth-of-type(n + 2) button.swatch-group__swatch {
+    border-left : none;
 }
 
 .swatch-group__label {

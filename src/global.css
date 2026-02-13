@@ -2,20 +2,20 @@
     --border-radius : .5rem;
 
     /* THEME VARS */
-    --clr-border : black;
 
     --clr-bg-base: hsl(0, 0, 88%);
     --clr-bg-mid: hsl(0, 0, 94%);
     --clr-bg-near: hsl(0, 0, 97%);
 
-    --clr-fg: black;
+    --clr-text: hsl(0, 0, 5%);
+    --clr-text-muted: hsl(0, 0, 40%);
 
     --clr-brand :#2d471e;
     --clr-brand-light: hsl(from var(--clr-brand) h calc(s - 30) calc(l + 45));
-    --clr-cta : hsl(from var(--clr-brand) h calc(s - 30) calc(l + 10));
 
     --clr-box-shadow: var(--clr-brand);
 
+    --clr-border : hsl(from var(--clr-bg-base) h s calc(l - 45));
 
 
 
@@ -23,14 +23,16 @@
 }
 
 [data-theme="dark"] {
-    --clr-border : #dee2e6;
 
 
     --clr-bg-base: hsl(0, 0, 15%);
-    --clr-bg-mid: hsl(0, 0, 30%);
-    --clr-bg-near: hsl(0, 0, 50%);
+    --clr-bg-mid: hsl(0, 0, 20%);
+    --clr-bg-near: hsl(0, 0, 30%);
 
-    --clr-fg : white;
+    --clr-text : hsl(0, 0, 95%);
+    --clr-text-muted: hsl(0, 0, 70%);
+
+    --clr-border : hsl(from var(--clr-bg-base) h s calc(l +10));
 
 
 }
@@ -38,7 +40,7 @@
 
 body {
     background-color : var(--clr-bg-base);
-    color : var(--clr-fg);
+    color : var(--clr-text);
 
     --border-std : 1px solid var(--clr-border);
 }
@@ -48,10 +50,10 @@ input, select, button, optgroup, textarea {
     border-radius: .5rem;
     border: var(--border-std);
     margin : 0 .25rem;
-    color : var(--clr-fg);
+    color : var(--clr-text);
     background-color : var(--clr-bg-mid);
     accent-color: var(--clr-bg-near);
-    color: var(--clr-fg);
+    color: var(--clr-text);
 }
 
 p {
@@ -60,7 +62,7 @@ p {
 
 /**** COMPONENTS ****/
 .harmony {
-    border: 3px solid var(--clr-cta);
+    border: 3px solid var(--clr-border);
     border-radius: var(--border-radius);
     box-shadow: 5px -5px 5px 0px var(--clr-box-shadow);
     background-color: var(--clr-bg-near);
