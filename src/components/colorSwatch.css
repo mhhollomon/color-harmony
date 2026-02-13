@@ -10,7 +10,7 @@
     right: calc(anchor(right) - 3em);
     padding: 0.25em .5em;
     background-color: var(--bg-color);
-    color: var(--fg-color);
+    color: var(--clr-fg);
     border-radius: var(--border-radius);
     border-width: 1px;
     border-style: solid;

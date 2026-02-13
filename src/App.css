@@ -27,13 +27,10 @@
 }
 
 .footer {
-    margin-block : 2rem;
     text-align : center;
-    background-color: var(--clr-primary);
-    color: #fff;
-    padding-block : 1rem;
 
-    a {
-        color: #fff;
-    }
+    margin-block : 2rem;
+    padding-block : 1rem;
+    background-color: var(--clr-bg-mid);
+    box-shadow: 0 -5px 5px 0px var(--clr-box-shadow);
 }

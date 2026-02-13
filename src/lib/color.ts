@@ -47,6 +47,19 @@ export class Color {
         return `${h},${s},${l}`;
     }
 
+    toFormatString(format: string): string {
+        switch (format) {
+            case 'hsl':
+                return this.toHSLString();
+            case 'rgb':
+                return this.toRGBString();
+            case 'hex':
+                return this.toHexString();
+            default:
+                throw new Error(`Unknown format: ${format}`);
+        }
+    }
+
     setLightness(lightness: number) : Color {
 
         if (lightness < 0) {

@@ -1,6 +1,6 @@
 .base-color {
-    box-shadow: 5px -5px 5px 0px var(--clr-shadow);
-    background-color: var(--bg-color);
+    box-shadow: 5px -5px 5px 0px var(--clr-box-shadow);
+    background-color: var(--clr-bg-near);
     border: 3px solid var(--clr-cta);
     border-radius: var(--border-radius);
 
@@ -11,7 +11,7 @@
 .base-color__title {
     margin-block-end: 1rem;
     padding-inline-start : 0.5em;
-    background-color : hsl(from var(--clr-cta) h s calc(l + 20));
+    background-color: var(--clr-brand-light);
     border-radius: 0.3rem 0.3rem 0 0 ;
 }
 
@@ -71,7 +71,8 @@
     display:flex;
     flex-direction: row;
     column-gap: .75em;
-    background-color: hsl(from var(--clr-cta) h s calc(l + 40));
+    /* background-color: hsl(from var(--clr-cta) h s calc(l + 40)); */
+    background-color: var(--clr-brand-light);
     border-radius: 0.3rem;
     padding: 0 0.5em;
 
@@ -109,8 +110,8 @@
     transition: opacity 0.5s ease-in-out, visibility 0.5s;
     transition-behavior: allow-discrete;
 
-    background-color: var(--bg-color);
-    color: var(--fg-color);
+    background-color: var(--clr-bg-near);
+    color: var(--clr-fg);
     border-radius: var(--border-radius);
     border-width: 1px;
     border-style: solid;
@@ -118,7 +119,7 @@
     padding: 0.25em .5em;
     font-size: 0.75em;
     text-wrap : nowrap;
-    box-shadow: 5px -5px 5px 0px var(--clr-shadow);
+    box-shadow: 5px -5px 5px 0px var(--clr-box-shadow);
 }
 
 .base-color__copied--visible {

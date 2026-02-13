@@ -1,41 +1,46 @@
 :root {
-    /* THEME VARS */
-    --border-color : black;
-    --clr-primary: #2d471e;
-    --fg-color : black;
-    --bg-color : white;
-    --clr-body : #eee;
-
-    --brand-color :#2d471e;
-    --accent-color : var(--brand-color);
-    /* --clr-cta : hsl(248, 76%, 60%); */
-    --clr-cta : hsl(from var(--brand-color) h calc(s - 30) calc(l + 10));
-
-    --clr-shadow : #A5A5A5;
-
     --border-radius : .5rem;
+
+    /* THEME VARS */
+    --clr-border : black;
+
+    --clr-bg-base: hsl(0, 0, 88%);
+    --clr-bg-mid: hsl(0, 0, 94%);
+    --clr-bg-near: hsl(0, 0, 97%);
+
+    --clr-fg: black;
+
+    --clr-brand :#2d471e;
+    --clr-brand-light: hsl(from var(--clr-brand) h calc(s - 30) calc(l + 45));
+    --clr-cta : hsl(from var(--clr-brand) h calc(s - 30) calc(l + 10));
+
+    --clr-box-shadow: var(--clr-brand);
+
+
+
 
 
 }
 
 [data-theme="dark"] {
-    --clr-primary: #558639;
-    --border-color : #dee2e6;
-    --fg-color : white;
-    --bg-color : #2e343a;
-    --accent-color : hsl(98, 76%, 60%);
-    --clr-shadow : #5a5a5a;
+    --clr-border : #dee2e6;
 
 
-    --clr-body : #212529;
+    --clr-bg-base: hsl(0, 0, 15%);
+    --clr-bg-mid: hsl(0, 0, 30%);
+    --clr-bg-near: hsl(0, 0, 50%);
+
+    --clr-fg : white;
+
+
 }
 
 
 body {
-    background-color : var(--clr-body);
-    color : var(--fg-color);
+    background-color : var(--clr-bg-base);
+    color : var(--clr-fg);
 
-    --border-std : 1px solid var(--border-color);
+    --border-std : 1px solid var(--clr-border);
 }
 
 input, select, button, optgroup, textarea {
@@ -43,11 +48,10 @@ input, select, button, optgroup, textarea {
     border-radius: .5rem;
     border: var(--border-std);
     margin : 0 .25rem;
-    color : var(--fg-color);
-    background-color : var(--bg-color);
-    accent-color: var(--accent-color);
-    background-color: var(--bg-color);
-    color: var(--fg-color);
+    color : var(--clr-fg);
+    background-color : var(--clr-bg-mid);
+    accent-color: var(--clr-bg-near);
+    color: var(--clr-fg);
 }
 
 p {
@@ -56,10 +60,10 @@ p {
 
 /**** COMPONENTS ****/
 .harmony {
-    border : var(--border-std);
+    border: 3px solid var(--clr-cta);
     border-radius: var(--border-radius);
-    box-shadow: 5px -5px 5px 0px var(--clr-shadow);
-    background-color: var(--bg-color);
+    box-shadow: 5px -5px 5px 0px var(--clr-box-shadow);
+    background-color: var(--clr-bg-near);
 }
 
 .harmony__title {

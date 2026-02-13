@@ -33,7 +33,7 @@
 	display: block;
 	width: 20px;
 	height: 20px;
-	background-color: var(--clr-primary);
+	background-color: var(--clr-fg);
     border-radius: 50%;
     cursor: pointer;
 }

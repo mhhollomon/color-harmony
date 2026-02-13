@@ -2,12 +2,12 @@
     border: none;
     position: fixed;
     border-radius: var(--border-radius);
-    background-color: var(--clr-body);
+    background-color: var(--clr-bg-base);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70%;
-    height: 70%;
+    width: min(700px, 70vw);
+    height: min(700px, 80vh);
 
     margin: .5em;
     padding: .5em;
@@ -17,9 +17,21 @@
         backdrop-filter: blur(6px);
     }
 }
+
+.export-dialog__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    button {
+        padding-inline: 0.25em;
+    }
+}
+
+
 .export-dialog__content {
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto auto 1fr;
     width: 100%;
     height: 100%;
 
@@ -30,10 +42,29 @@
         padding-inline: 0.5em;
     }
 
+    main {
+        display: contents;
+    }
+
 }
 
-.export-dialog__header {
+.export-dialog__format {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    gap : 0;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin-inline-start: 0.25em;
+    margin-block-end: 0.25em;
+
+    button {
+        padding-inline: 0.25em;
+        margin-inline : 0;
+        border: none;
+        border-radius : 0;
+        &:hover, &:focus-visible {
+            background-color: var(--clr-brand-light);
+        }
+    }
 }
+
