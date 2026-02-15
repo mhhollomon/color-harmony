@@ -9,6 +9,9 @@
     width: min(700px, 70vw);
     height: min(700px, 80vh);
 
+    anchor-scope: --clip-notification__anchor;
+
+
     margin: .5em;
 
     &::backdrop {
@@ -27,6 +30,10 @@
     padding-inline : 0.25em;
 
     button {
+
+        anchor-name: --clip-notification__anchor;
+        position:relative;
+
         display : flex;
         place-items: center;
         padding-inline: 0.25em;
@@ -67,6 +74,14 @@
 
 }
 
+.export-dialog__prefix {
+    margin-inline-start: 2em;
+    input {
+        padding: 0.5em;
+        max-width: 10em;
+    }
+}
+
 .export-dialog__tool-button {
     padding-inline: 0.25em;
     margin-inline : 0;
@@ -84,6 +99,9 @@
 
 
 .export_dialog__copy {
+    anchor-name: --clip-notification__anchor;
+
+    position: relative;
     margin-left: auto;
 }
 

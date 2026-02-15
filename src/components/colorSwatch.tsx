@@ -22,9 +22,10 @@ export default function ColorSwatch({className, color, index} : ColorSwatchProps
                 popoverTargetAction="toggle"
                 >
                 <div className="color-swatch__info" popover="auto" id={`color-swatch__info-${index}`}>
-                    <p>hex:</p> <p className="color-swatch__color">{color.toHexString()}</p>
-                    <p>rgb:</p> <p className="color-swatch__color"> {color.toRGBString()}</p>
-                    <p>hsl:</p> <p className="color-swatch__color"> {color.toHSLString()}</p>
+                    <p className="color-swatch__label">hex:</p> <p className="color-swatch__color">{color.toFormatString('hex')}</p>
+                    <p className="color-swatch__label">rgb:</p> <p className="color-swatch__color">{color.toFormatString('rgb')}</p>
+                    <p className="color-swatch__label">hsl:</p> <p className="color-swatch__color">{color.toFormatString('hsl')}</p>
+                    <p className="color-swatch__label">oklch:</p> <p className="color-swatch__color">{color.toFormatString('oklch')}</p>
                 </div>
             </button>
         </>

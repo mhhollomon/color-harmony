@@ -6,6 +6,8 @@
 
     /* to allow positioning of the tools */
     position:relative;
+
+    anchor-scope: --clip-notification__anchor;
 }
 
 .base-color__title {
@@ -94,39 +96,6 @@
 }
 
 .base-color__link {
-    anchor-name: --base-color__anchor;
-    position:relative;
-}
-.base-color__copied {
-    position-anchor: --base-color__anchor;
-    position: absolute;
-    bottom : calc(anchor(top) + 0.5em);
-    right : calc(anchor(right) - 1em);
-
-    display: block;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out, visibility 0.5s;
-    transition-behavior: allow-discrete;
-
-    /* background-color: var(--clr-bg-near); */
-    background-color: var(--clr-success);
-
-    color: var(--clr-text);
-    border-radius: var(--border-radius);
-    border-width: 1px;
-    border-style: solid;
-    border-color: var(--clr-border);
-    padding: 0.25em .5em;
-    font-size: 0.75em;
-    text-wrap : nowrap;
-    box-shadow: 5px -5px 5px 0px var(--clr-box-shadow);
-}
-
-.base-color__copied--visible {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out, visibility 0.5s;
-    transition-behavior: allow-discrete;
+    anchor-name: --clip-notification__anchor;
 
 }

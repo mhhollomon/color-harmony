@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Color, colorFromCompactString } from "~/lib/color"
+import { Color } from "~/lib/color"
 
 export interface GlobalStoreType {
     base_color : Color
@@ -27,7 +27,7 @@ export const TETRAD_DEFAULT_ANGLE = 90;
 
 
 export const useGlobalStore = create<GlobalStoreType>((set, get) => ({
-    base_color : new Color(42, 0.72, 0.54),
+    base_color : new Color('hsl(42, 72, 54)'),
     angles : [
         ANALOGOUS_DEFAULT_ANGLE,
         COMPLEMENTARY_DEFAULT_ANGLE,
@@ -41,7 +41,7 @@ export const useGlobalStore = create<GlobalStoreType>((set, get) => ({
     setAngle : (index: number, angle : number) => set(state => ({ angles: state.angles.map((a, i) => i === index ? angle : a) })),
 
     toSearchParm : () => {
-        const color = get().base_color.toCompactString();
+        const color = get().base_color.toString();
         const angles = get().angles;
 
         let retval = `${color}:${angles[0]}:${angles[1]}:${angles[2]}:${angles[3]}`;
@@ -62,6 +62,6 @@ export const useGlobalStore = create<GlobalStoreType>((set, get) => ({
         const [color, a0, a1, a2, a3] = atob(param)
             .split(':');
         const angles = [parseInt(a0, 10), parseInt(a1, 10), parseInt(a2, 10), parseInt(a3, 10)];
-        set({ base_color: colorFromCompactString(color), angles : angles });
+        set({ base_color: new Color(color), angles : angles });
     }
 }));

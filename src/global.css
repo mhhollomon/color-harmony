@@ -64,6 +64,15 @@ p {
     text-wrap: pretty;
 }
 
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+/* Optional: Prevents the page content from jumping when the scrollbar disappears */
+html {
+  scrollbar-gutter: stable;
+}
+
 /**** COMPONENTS ****/
 .harmony {
     border: 3px solid var(--clr-border);

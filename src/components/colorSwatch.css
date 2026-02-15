@@ -8,8 +8,8 @@
 .color-swatch__info {
     position-anchor: --swatch-anchor;
     top: calc(anchor(bottom) - 1em);
-    right: calc(anchor(right) - 3em);
-    padding: 0.25em .5em;
+    left: calc(anchor(left) - 7em);
+    padding: 0.25em 1em 0.25em 0.25em;
     background-color: var(--clr-bg-near);
     color: var(--clr-text);
     border-radius: var(--border-radius);
@@ -24,12 +24,16 @@
 
 .color-swatch__info:popover-open {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    column-gap: .5em;
+    grid-template-columns: 1fr 4fr;
+    column-gap: 1em;
     align-items: center;
 }
 
 .color-swatch__color {
     text-align: left;
     align-self: start;
+}
+
+.color-swatch__label {
+    text-align: right;
 }

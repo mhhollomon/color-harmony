@@ -1,11 +1,11 @@
-
-import { colorFromString } from "~/lib/color";
 import './baseColor.css'
 import { useEffect, useState } from "react";
 import ColorSwatch from "~/components/colorSwatch";
 import ExportDialog from "~/components/exportDialog";
 import { download, link45deg } from "~/lib/icons";
 import { useGlobalStore } from "~/lib/globalStore";
+import {Color} from '~/lib/color';
+import { ClipboardCopiedNotification } from '~/components/clipboardCopiedNotification';
 
 export default function BaseColor() {
     const { base_color, setBaseColor, toSearchParm } = useGlobalStore();
@@ -18,9 +18,11 @@ export default function BaseColor() {
     console.log(`color: ${base_color.toString()}`);
 
     function changeColor(e: React.ChangeEvent<HTMLInputElement>) {
-        setColorString(e.target.value);
+        const newColorString = e.target.value;
+        setColorString(newColorString);
         try {
-            const new_color = colorFromString(e.target.value);
+            const new_color = new Color(newColorString);
+            console.log(`--- new_color = ${new_color.toString()}`);
             setBaseColor(new_color);
             setErrorMsg("");
         } catch (err) {
@@ -52,9 +54,10 @@ export default function BaseColor() {
 
     useEffect(() => {
         if (isCopied) {
-            setTimeout(() => {
+            const refreshTimer = setTimeout(() => {
                 setIsCopied(false);
             }, 3000);
+            return () => clearTimeout(refreshTimer);
         }
     }, [isCopied]);
 
@@ -74,7 +77,8 @@ export default function BaseColor() {
                     <div className="base-color__input">
                         <label htmlFor="swatch-color">Color (hex, rgb, or hsl)</label>
                         <input type="text" name="swatch-color" id="swatch-color" value={color_string}
-                            onChange={(e) => changeColor(e)} />
+                            onChange={(e) => changeColor(e)}
+                            minLength={50} />
                         <div className="base-color__error">{errorMsg}</div>
                     </div>
                 </div>
@@ -84,9 +88,7 @@ export default function BaseColor() {
                 <li className="base-color__link" >
                     <a onClick={handleLinkClick}>{link45deg}</a>
                 </li>
-                <div className={"base-color__copied" + (isCopied ? " base-color__copied--visible" : "")}>
-                    Link copied to clipboard!
-                </div>
+                <ClipboardCopiedNotification isVisible={isCopied} setIsVisible={setIsCopied} />
                 <ExportDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} />
             </ul>
         </section>
