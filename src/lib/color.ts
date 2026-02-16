@@ -2,21 +2,25 @@ import color from 'colorjs.io';
 
 export class Color {
     clr : color;
+    in_gamut : boolean;
 
     constructor(color_string : string)
     constructor(clr : color)
     constructor(input: string | color) {
         if (input instanceof color) {
+            this.in_gamut = input.inGamut('hsl');
             this.clr = input.to('hsl', {inGamut: true});
             return;
         }
 
         if (typeof input === 'string') {
-            this.clr = (new color(input)).to('hsl', {inGamut: true});
+            const obj = new color(input);
+            this.in_gamut = obj.inGamut('hsl');
+            this.clr = obj.to('hsl', {inGamut: true});
             return;
         }
 
-        throw new ColorException('Invalid color');
+        throw new ColorException('Invalid input to Color');
     }
 
     toString(): string {

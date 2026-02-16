@@ -54,13 +54,15 @@ export default function ColorDialog({ isOpen, setIsOpen }: ColorDialogProps) {
 
     return (<>
         {/* Need the onClose to capture when 'esc' is pressed (rather than the close button). */}
-        <dialog open={true} className="color-dialog" ref={dialogRef} onClose={()=> setIsOpen(false)}>
+        <dialog className="color-dialog" ref={dialogRef} onClose={()=> setIsOpen(false)}>
             <div className="color-dialog__content">
                 <header className='color-dialog__header'>Set Color
                     <button onClick={() => setIsOpen(false)}>{x_large}</button>
                 </header>
 
-                <ColorSwatch color={new Color(currentColor)} className="color-dialog__color-swatch" index="dialog" />
+                <ColorSwatch color={new Color(currentColor)} className="color-dialog__color-swatch" index="dialog"
+                    focusAction={false} infoAction={false}
+                />
 
                 <label htmlFor="color-string">Color</label>
                 <input type="text" value={colorString} id="color-string" onChange={onChange} />

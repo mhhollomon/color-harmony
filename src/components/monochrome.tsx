@@ -18,7 +18,7 @@ export default function Monochrome() {
                     <p>The app tries to intelligently place the base color so that
                         the monochrome scale has room for contrast.
                     </p>
-                    <p>You can click on the color swatch to grab the css values.</p>
+                    <p>You can click on the color swatch to get the css values or to make it the base color.</p>
                 </div>
                 <SwatchGroup colors={colors} category="monochrome" />
             </div>

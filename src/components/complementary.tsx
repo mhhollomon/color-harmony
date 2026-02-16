@@ -20,7 +20,7 @@ export default function Complementary() {
             <div className="harmony__description">
                 <p>This is the color that is opposite of the base color on the color wheel.</p>
                 <p>The slider allows you adjust how far the color is from truly "opposite".</p>
-                <p>You can click on the color swatch to grab the css values.</p>
+                <p>You can click on the color swatch to get the css values or to make it the base color.</p>
             </div>
             <SwatchGroup colors={colors} category="complementary" />
             <AngleSlider onChange={onAngleChange} value={offset+40} display={offset} min={0} max={80} />

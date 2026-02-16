@@ -22,7 +22,7 @@ export default function Tetrad() {
                 <div className="harmony__description">
                     <p>These are colors two sets of complementary colors.</p>
                     <p>The slider allows you adjust how far the secondary color is from the base color.</p>
-                    <p>You can click on the color swatch to grab the css values.</p>
+                    <p>You can click on the color swatch to get the css values or to make it the base color.</p>
                 </div>
                 <SwatchGroup colors={colors} category="tetrad" />
                 <AngleSlider onChange={onAngleChange} value={angle} min={10} max={170} />

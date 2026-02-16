@@ -23,7 +23,7 @@ export default function Analogous() {
             <div className="harmony__description">
                 <p>These are colors that are "close" to the base color on the color wheel.</p>
                 <p>The slider allows you adjust how far the colors are from the base color.</p>
-                <p>You can click on the color swatch to grab the css values.</p>
+                <p>You can click on the color swatch to get the css values or to make it the base color.</p>
             </div>
             <SwatchGroup colors={colors} category="analogous" />
             <AngleSlider onChange={onAngleChange} value={angle} min={30} max={90} />

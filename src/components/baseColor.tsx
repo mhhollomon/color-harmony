@@ -38,12 +38,12 @@ export default function BaseColor() {
             <div className="base-color__body">
                 <div className="base-color__description">
                     <p>Enter a color in hex, rgb, or hsl format.</p>
-                    <p>For example: <code>#ff0000</code> , <code>rgb(255, 0, 0)</code>, or <code>hsl(0, 100%, 50%)</code>.</p>
+                    <p>For example: <code>#ff0000</code> , <code>rgb(255 0 0)</code>, or <code>hsl(0 100% 50%)</code>.</p>
                     <p>This color will be used as the base to create the color harmonies.</p>
-                    <p>You can click on the color swatch to grab the css values.</p>
+                    <p>Tools in the corner of the card will let you export the all the colors and create a link to show others.</p>
                 </div>
                 <div className="base-color__grid">
-                    <ColorSwatch color={base_color} className="base-color__swatch" index="base-color" />
+                    <ColorSwatch color={base_color} className="base-color__swatch"  focusAction={false} index="base-color" />
                     <button className="base-color__edit" type="button" onClick={() => setIsColorDialogOpen(true)}>Set Color</button>
                     <ColorDialog isOpen={isColorDialogOpen} setIsOpen={setIsColorDialogOpen} />
                 </div>

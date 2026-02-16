@@ -9,7 +9,6 @@ export type SwatchGroupProps = {
     colors: SwatchDatum[],
     category: string,
     className?: string
-
 }
 
 

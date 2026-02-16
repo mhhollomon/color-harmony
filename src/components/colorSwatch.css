@@ -2,8 +2,31 @@
     anchor-name: --swatch-anchor;
     anchor-scope: --swatch-anchor;
     border : 1px solid var(--clr-border);
+    border-radius: var(--border-radius);
 }
 
+.color-swatch__action-grid {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+    height: 100%;
+    background-color: transparent;
+    opacity : 0%;
+    color : inherit;
+
+    &:hover {
+        opacity : 100%;
+    }
+
+}
+
+.color-swatch__action-button {
+    background-color : transparent;
+    border: none;
+    height : max-content;
+    color: inherit;
+}
 
 .color-swatch__info {
     position-anchor: --swatch-anchor;
