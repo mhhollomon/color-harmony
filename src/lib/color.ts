@@ -7,12 +7,12 @@ export class Color {
     constructor(clr : color)
     constructor(input: string | color) {
         if (input instanceof color) {
-            this.clr = input;
+            this.clr = input.to('hsl', {inGamut: true});
             return;
         }
 
         if (typeof input === 'string') {
-            this.clr = new color(input);
+            this.clr = (new color(input)).to('hsl', {inGamut: true});
             return;
         }
 
@@ -28,23 +28,26 @@ export class Color {
     }
 
     lightness(): number {
-        return this.clr.hsl.lightness ?? 0;
+        const l = this.clr.to('hsl', {inGamut: true}).hsl.lightness ?? 0;
+        console.log(`-- color -- returning lightness: ${l}`);
+        return l;
     }
 
     setLightness(lightness: number) : Color {
-        const new_color = new color(this.clr);
+        const new_color = new color(this.clr.to('hsl'));
         new_color.hsl.lightness = lightness;
         return new Color(new_color);
     }
 
 
     updateLightness(delta: number) : Color {
-        const lightness = this.clr.hsl.lightness ?? 0;
-        return this.setLightness(lightness + delta);
+        return this.setLightness(this.lightness() + delta);
     }
 
     hue(): number {
-        return this.clr.hsl.hue ?? 0;
+        const h = this.clr.to('hsl').hsl.hue ?? 0;
+        console.log(`-- color -- returning hue: ${h}`);
+        return h;
     }
 
     setHue(hue: number) : Color {
@@ -54,14 +57,13 @@ export class Color {
             hue = hue - 360;
         }
 
-        const new_color = new color(this.clr);
+        const new_color = new color(this.clr.to('hsl'));
         new_color.hsl.hue = hue;
         return new Color(new_color);
     }
 
     updateHue(delta: number) : Color {
-        const hue = this.clr.hsl.hue ?? 0;
-        return this.setHue(hue + delta);
+        return this.setHue(this.hue() + delta);
     }
 
     saturation(): number {

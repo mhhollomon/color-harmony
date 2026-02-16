@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 import './clipboardCopiedNotifcation.css'
 
-export type ClipboardCopiedNotificationProps = {
+export interface ClipboardCopiedNotificationProps {
     isVisible: boolean,
     setIsVisible: (isVisible: boolean) => void
 }
@@ -17,7 +17,7 @@ export function ClipboardCopiedNotification({isVisible, setIsVisible }: Clipboar
             divRef.current?.classList.add('clip-notification--visible');
             const refreshTimer = setTimeout(() => {
                 setIsVisible(false);
-            }, 3000);
+            }, 2500);
             return () => clearTimeout(refreshTimer);
         } else {
             divRef.current?.classList.remove('clip-notification--visible');

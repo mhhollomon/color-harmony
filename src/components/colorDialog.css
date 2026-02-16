@@ -1,0 +1,61 @@
+.color-dialog {
+    border: none;
+    position: fixed;
+    border-radius: var(--border-radius);
+    background-color: var(--clr-bg-base);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(700px, 70vw);
+    height: min(700px, 80vh);
+
+    anchor-scope: --clip-notification__anchor;
+
+
+    margin: .5em;
+
+    &::backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(6px);
+    }
+
+    input {
+        padding-inline-start : .25em;
+    }
+}
+
+
+.color-dialog__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 0px 5px 5px 0px var(--clr-box-shadow);
+    margin-inline: 0;
+    margin-block-end : 1em;
+    padding-inline : 0.25em;
+
+    button {
+
+        anchor-name: --clip-notification__anchor;
+        position:relative;
+
+        display : flex;
+        place-items: center;
+        padding-inline: 0.25em;
+        padding-block: 0.25em;
+        margin-block: 0.1em;
+
+        &:hover, &:focus-visible {
+            background-color: var(--clr-error);
+        }
+    }
+}
+
+.color-dialog__color-swatch {
+    width: 20em;
+    height: 5em;
+    display: block;
+    margin-inline : auto;
+    margin-block-end: 2em;
+
+}

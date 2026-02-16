@@ -1,35 +1,20 @@
 import './baseColor.css'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ColorSwatch from "~/components/colorSwatch";
 import ExportDialog from "~/components/exportDialog";
 import { download, link45deg } from "~/lib/icons";
 import { useGlobalStore } from "~/lib/globalStore";
-import {Color} from '~/lib/color';
 import { ClipboardCopiedNotification } from '~/components/clipboardCopiedNotification';
+import ColorDialog from '~/components/colorDialog';
 
 export default function BaseColor() {
-    const { base_color, setBaseColor, toSearchParm } = useGlobalStore();
-    const [color_string, setColorString] = useState<string>(base_color.toString());
-    const [errorMsg, setErrorMsg] = useState("");
+    const { base_color, toSearchParm } = useGlobalStore();
     const [isCopied, setIsCopied] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isColorDialogOpen, setIsColorDialogOpen] = useState(false);
 
 
     console.log(`color: ${base_color.toString()}`);
-
-    function changeColor(e: React.ChangeEvent<HTMLInputElement>) {
-        const newColorString = e.target.value;
-        setColorString(newColorString);
-        try {
-            const new_color = new Color(newColorString);
-            console.log(`--- new_color = ${new_color.toString()}`);
-            setBaseColor(new_color);
-            setErrorMsg("");
-        } catch (err) {
-            console.log(err);
-            setErrorMsg((err as Error).message);
-        }
-    }
 
     function handleLinkClick() {
         const currentUrl = window.location.href;
@@ -47,21 +32,6 @@ export default function BaseColor() {
         setIsDialogOpen(true);
     }
 
-    useEffect(() => {
-        /* make sure our string matches the current color on mount */
-        setColorString(base_color.toString());
-    }, [base_color]);
-
-    useEffect(() => {
-        if (isCopied) {
-            const refreshTimer = setTimeout(() => {
-                setIsCopied(false);
-            }, 3000);
-            return () => clearTimeout(refreshTimer);
-        }
-    }, [isCopied]);
-
-
     return (
         <section className="base-color">
             <h2 className="base-color__title">Base Color</h2>
@@ -74,13 +44,8 @@ export default function BaseColor() {
                 </div>
                 <div className="base-color__grid">
                     <ColorSwatch color={base_color} className="base-color__swatch" index="base-color" />
-                    <div className="base-color__input">
-                        <label htmlFor="swatch-color">Color (hex, rgb, or hsl)</label>
-                        <input type="text" name="swatch-color" id="swatch-color" value={color_string}
-                            onChange={(e) => changeColor(e)}
-                            minLength={50} />
-                        <div className="base-color__error">{errorMsg}</div>
-                    </div>
+                    <button className="base-color__edit" type="button" onClick={() => setIsColorDialogOpen(true)}>Set Color</button>
+                    <ColorDialog isOpen={isColorDialogOpen} setIsOpen={setIsColorDialogOpen} />
                 </div>
             </div>
             <ul className="base-color__tools">
