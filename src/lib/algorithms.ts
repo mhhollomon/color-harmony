@@ -92,3 +92,12 @@ export function monochromeColors(base_color: Color) : SwatchDatum[] {
 }
 
 
+export function pickRandomColor() : Color {
+    function randomInt(min: number, max: number) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    const h = randomInt(0, 360);
+    const s = randomInt(30, 90);
+    const l = randomInt(30, 90);
+    return new Color(`hsl(${h}, ${s}%, ${l}%)`);
+}

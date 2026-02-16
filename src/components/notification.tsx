@@ -1,16 +1,21 @@
 import { useEffect, useRef } from "react";
 
-import './clipboardCopiedNotifcation.css'
+import './notifcation.css'
 
-export interface ClipboardCopiedNotificationProps {
+export interface NotificationProps {
     isVisible: boolean,
+    text? : string,
     setIsVisible: (isVisible: boolean) => void
 }
 
 
-export function ClipboardCopiedNotification({isVisible, setIsVisible }: ClipboardCopiedNotificationProps) {
+export default function Notification({isVisible, text,setIsVisible }: NotificationProps) {
 
     const divRef = useRef<HTMLDivElement>(null);
+
+    if (text === undefined) {
+        text = "Copied to clipboard";
+    }
 
     useEffect(() => {
         if (isVisible) {
@@ -27,7 +32,7 @@ export function ClipboardCopiedNotification({isVisible, setIsVisible }: Clipboar
 
     return (
         <div className="clip-notification" ref={divRef}>
-            Copied to clipboard
+            {text}
         </div>
     )
 }

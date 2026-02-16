@@ -4,7 +4,7 @@ import { useGlobalStore, COMPLEMENTARY_SLIDER_INDEX, ANALOGOUS_SLIDER_INDEX, SPL
 import { analogousColors, complementaryColors, monochromeColors, splitComplementaryColors, tetradColors, triadColors } from '~/lib/algorithms';
 
 import { copy as copy_icon, x_large } from '~/lib/icons';
-import { ClipboardCopiedNotification } from '~/components/clipboardCopiedNotification';
+import Notification from '~/components/notification';
 
 export interface ExportDialogProps {
     isOpen: boolean,
@@ -118,7 +118,7 @@ export default function ExportDialog({ isOpen, setIsOpen }: ExportDialogProps) {
                         onClick={() => { navigator.clipboard.writeText(generateData()); setIsCopied(true) }}>
                             {copy_icon}
                     </button>
-                    <ClipboardCopiedNotification key="export-notifcation"isVisible={isCopied} setIsVisible={setIsCopied} />
+                    <Notification key="export-notifcation" text="CSS copied to clipboard" isVisible={isCopied} setIsVisible={setIsCopied} />
                 </div>
                 <textarea name="export" id="export" rows={10} cols={50} readOnly={true}
                     value={generateData()}

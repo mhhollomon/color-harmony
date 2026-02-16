@@ -1,0 +1,26 @@
+.tool-group {
+
+    display:flex;
+    flex-direction: row;
+    column-gap: .75em;
+    background-color: var(--clr-brand-light);
+    border-radius: 0.3rem;
+    padding: 0 0.5em;
+
+    li {
+        list-style-type: none;
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: inherit;
+            transform: scale(1);
+            padding-top: .2em;
+            &:hover {
+                transform: scale(1.4);
+                animation: transform 0.2s ease-in-out;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+}

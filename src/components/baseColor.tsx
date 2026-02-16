@@ -1,14 +1,23 @@
 import './baseColor.css'
 import { useState } from "react";
+import { useGlobalStore } from "~/lib/globalStore";
+
 import ColorSwatch from "~/components/colorSwatch";
 import ExportDialog from "~/components/exportDialog";
-import { download, link45deg } from "~/lib/icons";
-import { useGlobalStore } from "~/lib/globalStore";
-import { ClipboardCopiedNotification } from '~/components/clipboardCopiedNotification';
+import Notification from '~/components/notification';
 import ColorDialog from '~/components/colorDialog';
+import ToolGroup, { type toolGroupData } from '~/components/toolGroup';
+
+import { download, link45deg, x_large } from "~/lib/icons";
+import { pickRandomColor } from '~/lib/algorithms';
+
+const dice = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path d="M13 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zM3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3z"/>
+  <path d="M5.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m8 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m-4-4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+</svg>
 
 export default function BaseColor() {
-    const { base_color, toSearchParm } = useGlobalStore();
+    const { base_color, setBaseColor, toSearchParm } = useGlobalStore();
     const [isCopied, setIsCopied] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isColorDialogOpen, setIsColorDialogOpen] = useState(false);
@@ -32,6 +41,30 @@ export default function BaseColor() {
         setIsDialogOpen(true);
     }
 
+    function handleRandomClick() {
+        const new_color = pickRandomColor();
+        setBaseColor(new_color);
+    }
+
+    function handleResetClick() {
+        const url = window.location.origin;
+        window.location.href = url;
+    }
+
+
+    const tools: toolGroupData[] = [
+        { title: dice, callback: handleRandomClick },
+        { title: download, callback: handleExportClick },
+        { title: link45deg, callback: handleLinkClick },
+
+    ]
+
+    const historyTools : toolGroupData[] = [
+        { title: download, callback: handleExportClick },
+        { title: link45deg, callback: handleLinkClick },
+    ]
+
+
     return (
         <section className="base-color">
             <h2 className="base-color__title">Base Color</h2>
@@ -48,14 +81,13 @@ export default function BaseColor() {
                     <ColorDialog isOpen={isColorDialogOpen} setIsOpen={setIsColorDialogOpen} />
                 </div>
             </div>
-            <ul className="base-color__tools">
-                <li><a onClick={handleExportClick}>{download}</a></li>
-                <li className="base-color__link" >
-                    <a onClick={handleLinkClick}>{link45deg}</a>
-                </li>
-                <ClipboardCopiedNotification isVisible={isCopied} setIsVisible={setIsCopied} />
-                <ExportDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} />
-            </ul>
+            <div className="base-color__tools">
+            <ToolGroup tools={historyTools}></ToolGroup>
+            <ToolGroup tools={tools} className="base-color__link"></ToolGroup>
+            <ToolGroup tools={[{title: x_large, callback: handleResetClick}]}></ToolGroup>
+            <Notification isVisible={isCopied} text="Link copied to clipboard" setIsVisible={setIsCopied} />
+            <ExportDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} />
+            </div>
         </section>
     );
 }

@@ -65,37 +65,17 @@
     height : 2lh;
 }
 
+.base-color__link {
+    anchor-name: --clip-notification__anchor;
+
+}
+
 .base-color__tools {
     position:absolute;
     bottom: 5px;
     right: 5px;
-
-    display:flex;
+    display : flex;
     flex-direction: row;
-    column-gap: .75em;
-    background-color: var(--clr-brand-light);
-    border-radius: 0.3rem;
-    padding: 0 0.5em;
-
-    li {
-        list-style-type: none;
-
-        a {
-            display: inline-block;
-            text-decoration: none;
-            color: inherit;
-            transform: scale(1);
-            padding-top: .2em;
-            &:hover {
-                transform: scale(1.4);
-                animation: transform 0.2s ease-in-out;
-                animation-fill-mode: forwards;
-            }
-        }
-    }
-}
-
-.base-color__link {
-    anchor-name: --clip-notification__anchor;
-
+    column-gap: 2em;
+    flex-wrap: none;
 }
