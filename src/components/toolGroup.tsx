@@ -3,6 +3,7 @@ import "./toolGroup.css"
 
 export interface toolGroupData {
     title : string | JSX.Element,
+    tooltip? : string | JSX.Element,
     callback : () => void,
 }
 
@@ -18,7 +19,11 @@ export default function ToolGroup({tools, className} : toolGroupProps) {
             {tools.map((tool, i) => {
                 return (
                     <li className="tool-group__item" key={i}>
-                        <a className="tool-group__button" onClick={tool.callback}>{tool.title}</a>
+                        <a className="tool-group__button"
+                                onClick={tool.callback}>{tool.title}
+                            {tool.tooltip && <p className="tool-group__tooltip"
+                                >{tool.tooltip}</p>}
+                        </a>
                     </li>
                 )
             })}

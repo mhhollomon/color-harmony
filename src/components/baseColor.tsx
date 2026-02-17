@@ -72,15 +72,30 @@ export default function BaseColor() {
 
 
     const tools: toolGroupData[] = [
-        { title: dice, callback: handleRandomClick },
-        { title: download, callback: handleExportClick },
-        { title: link45deg, callback: handleLinkClick },
+        { title: dice,
+            callback: handleRandomClick,
+            tooltip: "Generate a random color"
+        },
+        { title: download,
+            callback: handleExportClick,
+            tooltip: "Export colors to the clipboard"
+        },
+        { title: link45deg,
+            callback: handleLinkClick,
+            tooltip: "Copy the current link to current color settings"
+        },
 
     ]
 
     const historyTools : toolGroupData[] = [
-        { title: undo_icon, callback: handleUndoClick },
-        { title: redo_icon, callback: handleRedoClick },
+        { title: undo_icon,
+            callback: handleUndoClick,
+            tooltip: "Undo the last color change"
+         },
+        { title: redo_icon,
+            callback: handleRedoClick,
+            tooltip: "Redo the last color change"
+         },
     ]
 
 
@@ -103,7 +118,7 @@ export default function BaseColor() {
             <div className="base-color__tools">
             <ToolGroup tools={historyTools}></ToolGroup>
             <ToolGroup tools={tools} className="base-color__link"></ToolGroup>
-            <ToolGroup tools={[{title: x_large, callback: handleResetClick}]} className="base-color__reset"></ToolGroup>
+            <ToolGroup tools={[{title: x_large, callback: handleResetClick, tooltip: "Return to start of history"}]} className="base-color__reset"></ToolGroup>
             <Notification isVisible={isCopied} text="Link copied to clipboard" setIsVisible={setIsCopied} />
             <ExportDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} />
             </div>

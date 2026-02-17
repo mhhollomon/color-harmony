@@ -1,6 +1,6 @@
 .tool-group {
 
-    display:flex;
+    display: flex;
     flex-direction: row;
     column-gap: .75em;
     background-color: var(--clr-brand-light);
@@ -12,17 +12,55 @@
 
         a {
             display: flex;
-            height : 1.5em;
+            height: 1.5em;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             color: inherit;
             transform: scale(1);
+
             &:hover {
                 transform: scale(1.6);
                 animation: transform 0.2s ease-in-out;
                 animation-fill-mode: forwards;
+
+                .tool-group__tooltip {
+                    visibility: visible;
+                    transition-property: visibility;
+                    transition-duration: 0.2s;
+                    transition-timing-function: ease-in-out;
+                    transition-delay: 700ms;
+                }
+
             }
         }
+    }
+}
+
+.tool-group__tooltip {
+    display: block;
+    position: absolute;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    transform: translate(0, -100%);
+    font-size: 0.5em;
+    background-color: var(--clr-bg-near);
+    border-radius: 0.3rem;
+    padding: 0.25em 0.5em;
+    border: var(--clr-brand-light) solid 1px;
+    width: 10em;
+    box-shadow: 5px -5px 5px 0px var(--clr-box-shadow);
+
+    &::after {
+        content: " ";
+        position: absolute;
+        top: 100%;
+        /* At the bottom of the tooltip */
+        left: 1em;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: var(--clr-brand-light) transparent transparent transparent;
     }
 }
