@@ -11,6 +11,17 @@ export interface GlobalStoreType {
 
     toSearchParm : () => string
     fromSearchParm : (search : string) => void
+
+    history : Color[]
+    historyIndex : number
+    addToHistory : (color : Color) => void
+    undo : () => void
+    redo : () => void
+    resetHistory : () => void
+    canUndo : () => boolean
+    canRedo : () => boolean
+
+
 }
 
 export const ANALOGOUS_SLIDER_INDEX = 0;
@@ -34,8 +45,44 @@ export const useGlobalStore = create<GlobalStoreType>((set, get) => ({
         SPLIT_COMPLEMENTARY_DEFAULT_ANGLE,
         TETRAD_DEFAULT_ANGLE
     ],
+    history : [],
+    historyIndex : 0,
 
-    setBaseColor : (color : Color) => set({ base_color: color }),
+    addToHistory : (color : Color) => {
+        console.log(`-- adding ${color.toString()} to history (index ${get().historyIndex})`);
+        set(state => ({ history: [...state.history.slice(0, state.historyIndex), color], historyIndex: state.historyIndex + 1 }))
+    },
+
+    undo : () => {
+        if (get().historyIndex > 1) {
+            const color = get().history[get().historyIndex - 2];
+            console.log(`-- undoing to ${color.toString()} (index ${get().historyIndex - 1})`);
+            set(state => ({ base_color : color, historyIndex: state.historyIndex - 1 }))
+        } else {
+            console.log("-- Can't undo");
+        }
+    },
+    redo : () => {
+        if (get().historyIndex < get().history.length) {
+            const color = get().history[get().historyIndex];
+            console.log(`-- redoing to ${color.toString()} (index ${get().historyIndex})`);
+            set(state => ({ base_color : color, historyIndex: state.historyIndex + 1 }))
+        } else {
+            console.log("-- Can't redo");
+        }
+    },
+    resetHistory : () => set({
+        historyIndex: 1,
+        history: [...get().history.slice(0, 1)],
+        base_color : get().history[0]
+      }),
+    canUndo : () => get().historyIndex > 1,
+    canRedo : () => get().historyIndex < get().history.length,
+
+    setBaseColor : (color : Color) => {
+        set({ base_color: color })
+        get().addToHistory(color);
+    },
 
     getAngle : (index: number) => get().angles[index],
     setAngle : (index: number, angle : number) => set(state => ({ angles: state.angles.map((a, i) => i === index ? angle : a) })),
@@ -61,7 +108,8 @@ export const useGlobalStore = create<GlobalStoreType>((set, get) => ({
 
         const [color, a0, a1, a2, a3] = atob(param)
             .split(':');
+        const new_color = new Color(color);
         const angles = [parseInt(a0, 10), parseInt(a1, 10), parseInt(a2, 10), parseInt(a3, 10)];
-        set({ base_color: new Color(color), angles : angles });
+        set({ base_color: new_color, angles : angles, historyIndex : 1, history : [new_color] });
     }
 }));

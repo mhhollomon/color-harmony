@@ -33,7 +33,7 @@ export class Color {
 
     lightness(): number {
         const l = this.clr.to('hsl', {inGamut: true}).hsl.lightness ?? 0;
-        console.log(`-- color -- returning lightness: ${l}`);
+        // console.log(`-- color -- returning lightness: ${l}`);
         return l;
     }
 
@@ -50,7 +50,7 @@ export class Color {
 
     hue(): number {
         const h = this.clr.to('hsl').hsl.hue ?? 0;
-        console.log(`-- color -- returning hue: ${h}`);
+        // console.log(`-- color -- returning hue: ${h}`);
         return h;
     }
 
@@ -70,20 +70,6 @@ export class Color {
         return this.setHue(this.hue() + delta);
     }
 
-    saturation(): number {
-        return this.clr.hsl.saturation ?? 0;
-    }
-
-    setSaturation(saturation: number) : Color {
-        const new_color = new color(this.clr);
-        new_color.hsl.saturation = saturation;
-        return new Color(new_color);
-    }
-
-    updateSaturation(delta: number) : Color {
-        const saturation = this.saturation();
-        return this.setSaturation(saturation + delta);
-    }
 
 }
 

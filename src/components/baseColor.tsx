@@ -16,8 +16,18 @@ const dice = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill
   <path d="M5.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m8 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m-4-4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
 </svg>
 
+const undo_icon = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path fillRule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2z"/>
+  <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466"/>
+</svg>
+
+const redo_icon = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+  <path fillRule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+  <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+</svg>
+
 export default function BaseColor() {
-    const { base_color, setBaseColor, toSearchParm } = useGlobalStore();
+    const { base_color, setBaseColor, toSearchParm, undo, redo, resetHistory } = useGlobalStore();
     const [isCopied, setIsCopied] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isColorDialogOpen, setIsColorDialogOpen] = useState(false);
@@ -47,8 +57,17 @@ export default function BaseColor() {
     }
 
     function handleResetClick() {
-        const url = window.location.origin;
-        window.location.href = url;
+        resetHistory();
+    }
+
+    function handleUndoClick() {
+        undo();
+
+    }
+
+    function handleRedoClick() {
+        redo();
+
     }
 
 
@@ -60,8 +79,8 @@ export default function BaseColor() {
     ]
 
     const historyTools : toolGroupData[] = [
-        { title: download, callback: handleExportClick },
-        { title: link45deg, callback: handleLinkClick },
+        { title: undo_icon, callback: handleUndoClick },
+        { title: redo_icon, callback: handleRedoClick },
     ]
 
 
@@ -84,7 +103,7 @@ export default function BaseColor() {
             <div className="base-color__tools">
             <ToolGroup tools={historyTools}></ToolGroup>
             <ToolGroup tools={tools} className="base-color__link"></ToolGroup>
-            <ToolGroup tools={[{title: x_large, callback: handleResetClick}]}></ToolGroup>
+            <ToolGroup tools={[{title: x_large, callback: handleResetClick}]} className="base-color__reset"></ToolGroup>
             <Notification isVisible={isCopied} text="Link copied to clipboard" setIsVisible={setIsCopied} />
             <ExportDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} />
             </div>

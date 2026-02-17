@@ -11,13 +11,15 @@
         list-style-type: none;
 
         a {
-            display: inline-block;
+            display: flex;
+            height : 1.5em;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
             color: inherit;
             transform: scale(1);
-            padding-top: .2em;
             &:hover {
-                transform: scale(1.4);
+                transform: scale(1.6);
                 animation: transform 0.2s ease-in-out;
                 animation-fill-mode: forwards;
             }
