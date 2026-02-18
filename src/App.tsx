@@ -28,7 +28,7 @@ const notes_svg = <svg
 
 
 export default function App() {
-    const {fromSearchParm} = useGlobalStore();
+    const {fromSearchParam: fromSearchParm} = useGlobalStore();
 
     useEffect(() => {
         const urlObject = new URL(window.location.href);

@@ -59,7 +59,7 @@
 }
 
 .color-dialog__color-swatch {
-    width: 20em;
+    width: min(75%, 20em);
     height: 5em;
     display: block;
     margin-inline : auto;

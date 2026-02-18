@@ -27,7 +27,7 @@ const redo_icon = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 </svg>
 
 export default function BaseColor() {
-    const { base_color, setBaseColor, toSearchParm, undo, redo, resetHistory } = useGlobalStore();
+    const { base_color, setBaseColor, toSearchParam: toSearchParm, undo, redo, resetHistory } = useGlobalStore();
     const [isCopied, setIsCopied] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isColorDialogOpen, setIsColorDialogOpen] = useState(false);
@@ -98,6 +98,13 @@ export default function BaseColor() {
          },
     ]
 
+    const resetTools : toolGroupData[] = [
+        { title: x_large,
+            callback: handleResetClick,
+            tooltip: "Reset history"
+         },
+    ]
+
 
     return (
         <section className="base-color">
@@ -118,7 +125,7 @@ export default function BaseColor() {
             <div className="base-color__tools">
             <ToolGroup tools={historyTools}></ToolGroup>
             <ToolGroup tools={tools} className="base-color__link"></ToolGroup>
-            <ToolGroup tools={[{title: x_large, callback: handleResetClick, tooltip: "Return to start of history"}]} className="base-color__reset"></ToolGroup>
+            <ToolGroup tools={resetTools} className="base-color__reset"></ToolGroup>
             <Notification isVisible={isCopied} text="Link copied to clipboard" setIsVisible={setIsCopied} />
             <ExportDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} />
             </div>
