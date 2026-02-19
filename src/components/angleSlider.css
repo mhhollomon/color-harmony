@@ -1,35 +1,36 @@
-.SliderRoot {
+.angle-slider__root {
 	position: relative;
 	display: flex;
 	align-items: center;
     width: clamp(200px, 20vw, 600px);
     height: 2em;
 }
-.SliderRoot[data-orientation="vertical"] {
+.angle-slider__root[data-orientation="vertical"] {
 	flex-direction: column;
 	width: 20px;
 	height: 100px;
 }
 
-.SliderTrack {
+.angle-slider__track {
 	position: relative;
 	flex-grow: 1;
 	background-color: grey;
     height: 3px;
 }
-.SliderTrack[data-orientation="vertical"] {
+.angle-slider__track[data-orientation="vertical"] {
 	width: 3px;
 }
 
-.SliderRange {
+.angle-slider__range {
+    height: 3px;
 	position: absolute;
 	background-color: black;
 }
-.SliderRange[data-orientation="vertical"] {
+.angle-slider__range[data-orientation="vertical"] {
 	width: 100%;
 }
 
-.SliderThumb {
+.angle-slider__thumb {
 	display: block;
 	width: 20px;
 	height: 20px;
@@ -38,7 +39,7 @@
     cursor: pointer;
 }
 
-.SliderLabel {
+.angle-slider__label {
     display: block;
     margin-block: 1em;
 }
