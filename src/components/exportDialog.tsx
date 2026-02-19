@@ -129,10 +129,11 @@ export default function ExportDialog({ isOpen, setIsOpen }: ExportDialogProps) {
         <>
             {/* Need the onClose to capture when 'esc' is pressed (rather than the close button). */}
             <dialog className="export-dialog" ref={dialogRef} onClose={() => setIsOpen(false)}>
+                <header className='export-dialog__header'>
+                    <div>Export</div>
+                    <button onClick={() => setIsOpen(false)}>{x_large}</button>
+                </header>
                 <div className="export-dialog__content">
-                    <header className='export-dialog__header'>Export
-                        <button onClick={() => setIsOpen(false)}>{x_large}</button>
-                    </header>
                     <div className="export-dialog__prefix">
                         <label htmlFor="prefix">var name prefix</label>
                         <input id="prefix" type="text" value={prefix} onChange={(e) => setPrefix(e.target.value)} />
@@ -154,7 +155,7 @@ export default function ExportDialog({ isOpen, setIsOpen }: ExportDialogProps) {
                         </button>
                         <Notification key="export-notifcation" text="CSS copied to clipboard" isVisible={isCopied} setIsVisible={setIsCopied} />
                     </div>
-                    <textarea name="export" id="export" rows={10} cols={50} readOnly={true}
+                    <textarea name="export" id="export" rows={20} cols={50} readOnly={true}
                         value={generateData()}
                     >
                     </textarea>
