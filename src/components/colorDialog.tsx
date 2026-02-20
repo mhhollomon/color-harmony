@@ -82,7 +82,7 @@ export default function ColorDialog({ isOpen, setIsOpen }: ColorDialogProps) {
     return (<>
         {/* Need the onClose to capture when 'esc' is pressed (rather than the close button). */}
         <dialog className="color-dialog" ref={dialogRef} onClose={() => setIsOpen(false)}>
-            <header className='color-dialog__header'>Set Color
+            <header className='dialog-header'><span>Select Color</span>
                 <button onClick={() => setIsOpen(false)}>{x_large}</button>
             </header>
             <div className="color-dialog__content">
@@ -94,40 +94,38 @@ export default function ColorDialog({ isOpen, setIsOpen }: ColorDialogProps) {
                     <label htmlFor="color-string">Color</label>
                     <input type="text" value={colorString} id="color-string" onChange={onChange} />
                     {errorMsg ? <p className="color-dialog__error">{errorMsg}</p> : null}
-                    <button onClick={handleSave}>Save</button>
+                    <button className="color-dialog__save-button" onClick={handleSave}>Save</button>
                 </div>
                 <Tabs.Root className="color-dialog__tabs" defaultValue='rgb'>
-                    <Tabs.List>
-                        <Tabs.Trigger value='rgb'>RGB</Tabs.Trigger>
-                        <Tabs.Trigger value='hsl'>HSL</Tabs.Trigger>
+                    <Tabs.List className="color-dialog__tabs-list">
+                        <Tabs.Trigger className="color-dialog__tabs-trigger" value='rgb'>RGB</Tabs.Trigger>
+                        <Tabs.Trigger className="color-dialog__tabs-trigger" value='hsl'>HSL</Tabs.Trigger>
                     </Tabs.List>
                     <Tabs.Content value='rgb'>
                         <ColorSlider min={0} max={255} title="Red"
-                            gradientStart='#000' gradientEnd='#f00'
+                            gradientStops={['#000', '#f00']}
                             value={Math.floor((currentColor.srgb.red ?? 0) * 255)}
                             onChange={(value) => { onColorSliderChange(value, 'rgb', 'red') }} />
                         <ColorSlider min={0} max={255} title="Green"
-                            gradientStart='#000' gradientEnd='#0f0'
+                            gradientStops={['#000', '#0f0']}
                             value={Math.floor((currentColor.srgb.green ?? 0) * 255)}
                             onChange={(value) => { onColorSliderChange(value, 'rgb', 'green') }} />
                         <ColorSlider min={0} max={255} title="Blue"
-                            gradientStart='#000' gradientEnd='#00f'
+                            gradientStops={['#000', '#00f']}
                             value={Math.floor((currentColor.srgb.blue ?? 0) * 255)}
                             onChange={(value) => { onColorSliderChange(value, 'rgb', 'blue') }} />
                     </Tabs.Content>
                     <Tabs.Content value='hsl'>
                         <ColorSlider min={0} max={359} title="Hue"
-                            gradientStart='hsl(0, 100%, 50%)' gradientEnd='hsl(270, 100%, 50%)'
+                            gradientStops={['hsl(0, 100%, 50%)', 'hsl(120, 100%, 50%)', 'hsl(240, 100%, 50%)', 'hsl(359, 100%, 50%)']}
                             value={Math.floor(currentColor.hsl.hue ?? 0)}
                             onChange={(value) => { onColorSliderChange(value, 'hsl', 'hue') }} />
                         <ColorSlider min={0} max={100} title="Saturation"
-                            gradientStart={sat_gradient_start.toString()}
-                            gradientEnd={sat_gradient_end.toString()}
+                            gradientStops={[sat_gradient_start.toString(), sat_gradient_end.toString()]}
                             value={Math.floor(currentColor.hsl.saturation ?? 0)}
                             onChange={(value) => { onColorSliderChange(value, 'hsl', 'saturation') }} />
                         <ColorSlider min={0} max={100} title="Lightness"
-                            gradientStart={hsl_gradient_start.toString()}
-                            gradientEnd={hsl_gradient_end.toString()}
+                            gradientStops={[hsl_gradient_start.toString(), hsl_gradient_end.toString()]}
                             value={Math.floor(currentColor.hsl.lightness ?? 0)}
                             onChange={(value) => { onColorSliderChange(value, 'hsl', 'lightness') }} />
                     </Tabs.Content>

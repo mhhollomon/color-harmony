@@ -14,43 +14,14 @@
 
     margin: .5em;
 
+
     &::backdrop {
         background-color: rgba(0, 0, 0, 0.5);
         backdrop-filter: blur(6px);
     }
 }
 
-.export-dialog__header {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0px 5px 5px 0px var(--clr-box-shadow);
-    margin-inline: 0;
-    margin-block-end : 1em;
-    padding-inline : 0.25em;
-    padding-block : 0.25em;
-
-    div {
-        height : fit-content;
-        font-size : 2em;
-    }
-
-    button {
-
-        display : flex;
-        place-items: center;
-        padding-inline: 0.25em;
-        padding-block: 0.25em;
-        margin-block: 0.1em;
-
-        &:hover, &:focus-visible {
-            background-color: var(--clr-error);
-        }
-    }
-}
-
+/* the dialog header uses the global.css class .dialog-header */
 
 .export-dialog__content {
     display: grid;

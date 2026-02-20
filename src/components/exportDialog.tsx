@@ -129,8 +129,8 @@ export default function ExportDialog({ isOpen, setIsOpen }: ExportDialogProps) {
         <>
             {/* Need the onClose to capture when 'esc' is pressed (rather than the close button). */}
             <dialog className="export-dialog" ref={dialogRef} onClose={() => setIsOpen(false)}>
-                <header className='export-dialog__header'>
-                    <div>Export</div>
+                <header className='dialog-header'>
+                    <span>Export</span>
                     <button onClick={() => setIsOpen(false)}>{x_large}</button>
                 </header>
                 <div className="export-dialog__content">

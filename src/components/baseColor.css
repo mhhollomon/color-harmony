@@ -65,6 +65,13 @@
     height : 2lh;
 }
 
+.base-color__edit {
+    &:hover &:focus-visible {
+        cursor: pointer;
+        background-color : var(--clr-bg-near);
+    }
+}
+
 .base-color__link {
     anchor-name: --clip-notification__anchor;
 }

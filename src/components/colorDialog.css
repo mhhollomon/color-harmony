@@ -3,6 +3,7 @@
     position: fixed;
     border-radius: var(--border-radius);
     background-color: var(--clr-bg-base);
+
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -31,31 +32,8 @@
     }
 }
 
-
-.color-dialog__header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    box-shadow: 0px 5px 5px 0px var(--clr-box-shadow);
-    margin-inline: 0;
-    margin-block-end : 1em;
-    padding-inline : 0.25em;
-
-    button {
-
-        anchor-name: --clip-notification__anchor;
-        position:relative;
-
-        display : flex;
-        place-items: center;
-        padding-inline: 0.25em;
-        padding-block: 0.25em;
-        margin-block: 0.1em;
-
-        &:hover, &:focus-visible {
-            background-color: var(--clr-error);
-        }
-    }
+.color-dialog__save-button:hover, .color-dialog__save-button:focus-visible {
+    background-color: var(--clr-bg-base);
 }
 
 .color-dialog__color-swatch {
@@ -69,4 +47,25 @@
 
 .color-dialog__tabs {
     border : var(--border-std);
+    margin-block-start : 0.5em;
+    padding-block: 0.5em;
+}
+
+.color-dialog__tabs-list {
+    margin-inline-start: 0.5em;
+}
+
+.color-dialog__tabs-trigger {
+    padding-inline: 0.25em;
+    margin-inline : 0;
+    border: none;
+    border-radius : 0;
+    &:hover, &:focus-visible {
+        background-color: var(--clr-brand-light);
+    }
+
+    &[data-state = 'active'] {
+        border-top: 3px solid var(--clr-brand);
+    }
+
 }

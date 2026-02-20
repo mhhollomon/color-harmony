@@ -94,3 +94,34 @@ html {
 .harmony__description {
     margin-bottom : 1rem;
 }
+
+
+.dialog-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 0px 5px 5px 0px var(--clr-box-shadow);
+    margin-inline: 0;
+    margin-block-end : 1em;
+    padding-block : 0.25em;
+    padding-inline : 0.5em;
+
+
+    span {
+        font-size : 1.5em;
+    }
+
+    button {
+
+        display : flex;
+        place-items: center;
+        padding-inline: 0.25em;
+        padding-block: 0.25em;
+        margin-block: 0.1em;
+
+        &:hover, &:focus-visible {
+            background-color: var(--clr-error);
+        }
+    }
+
+}
