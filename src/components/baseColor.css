@@ -66,9 +66,9 @@
 }
 
 .base-color__edit {
-    &:hover &:focus-visible {
+    &:hover, &:focus-visible {
         cursor: pointer;
-        background-color : var(--clr-bg-near);
+        background-color : var(--clr-bg-base);
     }
 }
 
